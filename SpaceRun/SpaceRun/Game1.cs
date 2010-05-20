@@ -56,7 +56,7 @@ namespace SpaceRun
             EntityManager.get().playerShips.Add(ship);
 
             Random rand = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 PlayerShip ship2 = new PlayerShip();
                 ship2.model = ship.model;
@@ -104,23 +104,6 @@ namespace SpaceRun
             GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
 
             EntityManager.get().renderEntities(graphics);
-
-            Matrix cameraViewMatrix = Matrix.CreateLookAt(Vector3.Zero, new Vector3(-1.0f, -1.0f, 1.0f), Vector3.Up);
-            Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 10000.0f);
-            
-            foreach (ModelMesh mesh in EntityManager.get().playerShips[0].model.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
-                    effect.PreferPerPixelLighting = true;
-                    effect.World = Matrix.CreateFromYawPitchRoll(0, 0, 0) * Matrix.CreateScale(1.0f) * Matrix.CreateTranslation(new Vector3(-200, -200, 200));
-                    effect.Projection = cameraProjectionMatrix;
-                    effect.View = cameraViewMatrix;
-                }
-
-                mesh.Draw();
-            }
 
             base.Draw(gameTime);
         }
