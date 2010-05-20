@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Spacerun")]
-[assembly: AssemblyProduct("Spacerun")]
+[assembly: AssemblyTitle("Space run")]
+[assembly: AssemblyProduct("Space run")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Avek Esitysratkaisut Oy")]
 
