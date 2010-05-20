@@ -3,7 +3,7 @@
 The player is an independent transport ship pilot, specialized at difficult and questionably legal operations.
 
 
-== Fractions ==
+== Factions ==
 
 === Arms & Arms Corporation ===
 A huge corporate megaentity, controlling the oldest and most population dense systems with an iron fist of corruption and bureaucracy.  Originally arising from a weapons and biomedical conglomerate (as evident in the name).
