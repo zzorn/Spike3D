@@ -35,7 +35,8 @@ namespace SpaceRun
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // TODO: A list of levels or something.
+            new Level1().populateLevel();
 
             base.Initialize();
         }
