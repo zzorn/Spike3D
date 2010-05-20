@@ -17,4 +17,5 @@ namespace SpaceRun
     public abstract class Ship : Entity
     {
     }
+
 }

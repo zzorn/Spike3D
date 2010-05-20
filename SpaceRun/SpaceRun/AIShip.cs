@@ -14,9 +14,13 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    public class EnemyShip : Ship
+    public class AIShip : Ship
     {
         public override void LogicUpdate(GameTime time)
+        {
+        }
+
+        public override void Render() // TODO: Add graphics object?
         {
         }
     }

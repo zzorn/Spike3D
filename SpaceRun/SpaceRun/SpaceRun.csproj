@@ -83,8 +83,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemyShip.cs" />
+    <Compile Include="AIShip.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="EntityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
