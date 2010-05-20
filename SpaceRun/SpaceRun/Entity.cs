@@ -16,26 +16,41 @@ namespace SpaceRun
 {
     abstract public class Entity
     {
-        private Vector3 position;
-        private Vector3 velocity;
-        private Vector3 acceleration;
+        public long id { get; set; }
 
-        private Quaternion heading;
-        private Quaternion rotation;
-        private Quaternion torque;
+        public Vector3 position { get; set; }
+        public Vector3 velocity { get; set; }
+        public Vector3 acceleration { get; set; }
 
-        private Vector3 thrustVector;
-        private Vector3 torqueThrustVector;
+        public Quaternion heading { get; set; }
+        public Quaternion rotation { get; set; }
+        public Quaternion torque { get; set; }
 
+        public float mass_kg{ get; set; }
+        public Vector3 thrustVector_N { get; set; }
+        public Vector3 torqueThrustVector_N { get; set; }
+
+        /**
+         * Updates AI, player input, game logic, physics, movement, etc.
+         */ 
         public void Update(GameTime time)
         {
+            // Logic
             LogicUpdate(time);
 
+            // Physics
             // TODO: Get surrounding forces (planet gravitation etc)
-            Vector3 surroundingForces = new Vector3();
-            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds, surroundingForces);
+            Vector3 environmentForces_N = new Vector3();
+            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds, environmentForces_N);
+
+            // Movement
             UpdateMovement((float)time.ElapsedGameTime.TotalSeconds);
         }
+
+        /**
+         * Render the entity to the specified context.
+         */ 
+        public abstract void Render(); // TODO: Add graphics object?
 
         /**
          * Does logic update for the entity (AI or player control, state changes, etc).
@@ -46,9 +61,10 @@ namespace SpaceRun
         /**
          * Update movement based on physical forces.
          */ 
-        public void UpdatePhysics(float time, Vector3 surroundingForces)
+        public void UpdatePhysics(float time, Vector3 environmentForces_N)
         {
-
+            Vector3 forces_N = thrustVector_N + environmentForces_N;
+            acceleration = forces_N / mass_kg;
         }
 
         /**
