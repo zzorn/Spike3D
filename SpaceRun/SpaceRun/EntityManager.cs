@@ -17,7 +17,7 @@ namespace SpaceRun
     public class EntityManager
     {
         public List<Entity> asteroids { get; protected set; }
-        public List<Entity> playersShips { get; protected set; }
+        public List<Entity> playerShips { get; protected set; }
         public List<Entity> aiShips { get; protected set; }
 
         private static EntityManager instance;
@@ -31,10 +31,39 @@ namespace SpaceRun
             return instance;
         }
 
+
+        public void updateEntities(GameTime gameTime)
+        {
+            foreach (List<Entity> entityList in getNextEntityList())
+            {
+                foreach (Entity entity in entityList)
+                {
+                    entity.Update(gameTime);
+                }
+            }
+        }
+
+        public void renderEntities(GraphicsDeviceManager graphics)
+        {
+            foreach (List<Entity> entityList in getNextEntityList())
+            {
+                foreach (Entity entity in entityList)
+                {
+                    entity.Render(graphics);
+                }
+            }
+        }
+        private IEnumerable<List<Entity>> getNextEntityList()
+        {
+            yield return asteroids;
+            yield return playerShips;
+            yield return aiShips;
+        }
+
         private EntityManager()
         {
             asteroids = new List<Entity>();
-            playersShips = new List<Entity>();
+            playerShips = new List<Entity>();
             aiShips = new List<Entity>();
         }
 

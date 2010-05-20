@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Spacerun
+namespace SpaceRun
 {
     /// <summary>
     /// This is the main type for your game
@@ -72,7 +72,7 @@ namespace Spacerun
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            EntityManager.get().updateEntities(gameTime);
 
             base.Update(gameTime);
         }
@@ -85,7 +85,7 @@ namespace Spacerun
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            EntityManager.get().renderEntities(graphics);
 
             base.Draw(gameTime);
         }

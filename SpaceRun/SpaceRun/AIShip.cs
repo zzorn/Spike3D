@@ -37,7 +37,7 @@ namespace SpaceRun
 
         }
 
-        public override void Render() // TODO: Add graphics object?
+        public override void Render(GraphicsDeviceManager graphics)
         {
         }
 
@@ -45,7 +45,7 @@ namespace SpaceRun
         {
             float nearestDistance = maxDistance;
             Entity nearestPlayer = null;
-            foreach (Entity player in EntityManager.get().playersShips)
+            foreach (Entity player in EntityManager.get().playerShips)
             {
                 float distance = Vector3.Distance(position, player.position);
                 if (distance <= nearestDistance)

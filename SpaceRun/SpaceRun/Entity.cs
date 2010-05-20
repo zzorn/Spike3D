@@ -53,7 +53,7 @@ namespace SpaceRun
         /**
          * Render the entity to the specified context.
          */ 
-        public abstract void Render(); // TODO: Add graphics object?
+        public abstract void Render(GraphicsDeviceManager graphics);
 
         /**
          * Does logic update for the entity (AI or player control, state changes, etc).
