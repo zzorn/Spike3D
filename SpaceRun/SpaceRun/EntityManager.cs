@@ -32,7 +32,6 @@ namespace SpaceRun
             return instance;
         }
 
-
         public void updateEntities(GameTime gameTime)
         {
             foreach (List<Entity> entityList in getNextEntityList())
@@ -54,6 +53,7 @@ namespace SpaceRun
                 }
             }
         }
+
         private IEnumerable<List<Entity>> getNextEntityList()
         {
             yield return asteroids;

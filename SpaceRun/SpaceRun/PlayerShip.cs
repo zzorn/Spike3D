@@ -23,7 +23,7 @@ namespace SpaceRun
             thrustVector_N = new Vector3(0, 0, GamePad.GetState(PlayerIndex.One).Triggers.Right);
             torqueThrustVector_N = new Vector3(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left, 0);
 
-            Waypoint waypoint = EntityManager.get().waypoints[currentWaypointIndex];
+            Entity waypoint = EntityManager.get().waypoints[currentWaypointIndex];
         }
 
     }
