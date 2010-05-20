@@ -69,9 +69,23 @@ namespace SpaceRun
         /**
          * Render the entity to the specified context.
          */
-        public virtual void Render(GraphicsDeviceManager graphics)
+        public virtual void Render(GraphicsDeviceManager graphics, , Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
         {
-            // TODO: Render model
+            float scale = 1;
+
+            // Render model mesh
+            foreach(ModelMesh mesh in model.Meshes) {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+                    effect.PreferPerPixelLighting = true;
+                    effect.World = Matrix.CreateFromQuaternion(heading) * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
+                    effect.Projection = cameraProjectionMatrix;
+                    effect.View = cameraViewMatrix;
+                }
+
+                mesh.Draw();
+            }
         }
 
         /**

@@ -22,6 +22,8 @@ namespace SpaceRun
         public List<Entity> waypoints { get; protected set; }
         public List<Entity> planets { get; protected set; }
 
+        public Entity cameraEntity { get; set; }
+
         private static EntityManager instance;
 
         public static EntityManager get()
@@ -60,11 +62,15 @@ namespace SpaceRun
 
         public void renderEntities(GraphicsDeviceManager graphics)
         {
+            // View from the perspective of the camera entity
+            Matrix cameraViewMatrix = Matrix.CreateFromQuaternion(heading);
+            Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphics.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000000f);
+
             foreach (List<Entity> entityList in getEntityLists())
             {
                 foreach (Entity entity in entityList)
                 {
-                    entity.Render(graphics);
+                    entity.Render(graphics, cameraViewMatrix, cameraProjectionMatrix);
                 }
             }
         }
