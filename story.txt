@@ -41,9 +41,9 @@ Narrative text:
 "My last trading run had taken me to a small station off the beaten track, and I was looking for new cargo."
 
 Trading station operator (and owner) Tessa on the video console:
-"Hi there!  This just in - might interest you?  Apparently we have wrecked Arms&Arms transport near the gate on the other side of the planet - a contact of mine suggested it might have some interesting cargo.  Fancy a little looting run?"
+"Hi there!  This just in - might interest you?  Apparently we have a wrecked Arms&Arms transport near the gate on the other side of the planet - a contact of mine suggested it might have some interesting cargo.  Fancy a little looting run?"
 "You'll better stay within the ring - looks like it had a destroyer as an escort, it's hovering near the gate and waiting for a salvage ship.  Better not show up on their radars!"
-"I marked out the position for you - just follow the waypoints!"
+"I marked out the position for you - just follow the waypoints."
 
 * Player gets to fly through the first few waypoints and avoid asteroids as a kind of gentle introduction to the game (each waypoint is a savepoint also btw).
 
@@ -53,10 +53,10 @@ Tessa: "Oops, looks like they saw you!  There's some incoming fighters!"
 
 * Enemy fighters start traveling towards the player from the destroyer.
 
-Near the wrek:
+Near the wreck:
 * debris is floating around, as well as cargo containers with waypoint markers.
 Tessa: "Looks like the transport is totally wrecked!  I wonder what happened to it?  Those Corporation transports are pretty sturdy."
-"But it looks like most of the loot is well packed and intact!  Just collect the containers by flying near them."
+"But most of the loot was well packed and looks unscratched!  Just collect the containers by flying near them."
 
 When all container waypoints reached: 
 Tessa: "Good work!  Now get back here, but loose those fighters first!  We don't want them to follow you to this trading station!  I plotted out an evasive route for you."
@@ -73,14 +73,15 @@ text: "End of Episode 1"
 
 
 === Episode 2 ===
-* Cargo turns out to be a bomb device of some sort
+* Cargo turns out to be a bomb device of some sort - Tessas contact appears on video and leaks more info
 * A fighter finds the trading station
 * Player has to destroy the fighter before it reaches the destroyer
-* But when player destroys the fighter, the destroyer has already rounded the planet, and is attacking the trading station
+* But when the player destroys the fighter, the destroyer has already rounded the planet, and is attacking the trading station
 
 === Episode 3 ===
 * In desperation, it is decided to try to blow up the destroyer using the found bomb device
-* Player has to race to trading station, load the device (which is floating in a cargo container near the station, or something), and then fly close to the destroyer to attach the device
+* The device is still in the players cargo hold - there was never time to unload it. (Or should the player race to the station and pick it up?)
+* Player has to fly close to the destroyer to attach the device
 * destroyer is huge, with several laser turrets and a fighter launch port
 * bomb target is at center of the bridge
 * After deposited the player has to flee
@@ -90,7 +91,7 @@ text: "End of Episode 1"
 * The gravity pulse device has pulled the moons out of their orbit, and they are being sucked into a gravitation well along with the planet, which is deforming into a black hole.  Swirls of dust and asteroids spin around the epicentrum.
 * A Brother from the Brotherhood of Universal Singularity (who turns out to have arranged the transporter accident and informed Tessa about it) appears on screen gloating over how they will turn the whole universe into a gravitational singularity, one star system at a time
 * Tessa calls for help from the trading station falling into the black hole
-* Player has to race to trading station to rescure Tessa and the other crew, and then head to the gate
+* Player has to race to trading station to rescue Tessa and the other crew, and then head to the gate
 * Stray corporate fighters fight everyone and Brotherhood Flying Prayerhouses appear from the gate to erase any witnesses
 
 
