@@ -26,9 +26,12 @@ namespace SpaceRun
         public Quaternion rotation { get; set; }
         public Quaternion torque { get; set; }
 
-        public float mass_kg{ get; set; }
+        public float mass_kg { get; set; }
+        public float boundingRadius { get; set; }
+        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius * boundingRadius) / 5.0f; } private set; } // Assumes solid sphere approximation
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
+
 
         /**
          * Updates AI, player input, game logic, physics, movement, etc.
@@ -63,8 +66,16 @@ namespace SpaceRun
          */ 
         public void UpdatePhysics(float time, Vector3 environmentForces_N)
         {
-            Vector3 forces_N = thrustVector_N + environmentForces_N;
+            // Thrust is in local coordinate space, so rotate it with the heading
+            Matrix headingMatrix = Matrix.CreateFromQuaternion(heading);
+            Vector3 rotatedThrust_N = Vector3.Transform(thrustVector_N, headingMatrix);
+
+            // Calculate acceleration
+            Vector3 forces_N = rotatedThrust_N + environmentForces_N;
             acceleration = forces_N / mass_kg;
+
+            // Turning
+            torque = torqueThrustVector_N / rotationalInertia;
         }
 
         /**
