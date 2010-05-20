@@ -87,6 +87,7 @@
     <Compile Include="AIShip.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityManager.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="PlayerShip.cs" />

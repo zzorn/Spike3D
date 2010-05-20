@@ -18,7 +18,7 @@ namespace SpaceRun
     {
         public float hull { get; protected set; }
         public float shield { get; protected set; }
-        
+
         protected float maxVelocity { get; set; }
         protected float maxThrust { get; set; }
 

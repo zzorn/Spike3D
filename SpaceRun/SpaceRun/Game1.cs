@@ -35,7 +35,14 @@ namespace SpaceRun
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            EntityManager manager = EntityManager.get();
+
+            Waypoint waypoint = new Waypoint();
+            waypoint.radius_m = 10.0f;
+            waypoint.position = new Vector3(100.0f, 200.0f, 150.0f);
+            manager.waypoints.Add(waypoint);
+
+            manager.playerShips.Add(new Ship());
 
             base.Initialize();
         }
