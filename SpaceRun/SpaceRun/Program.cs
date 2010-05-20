@@ -1,6 +1,6 @@
 using System;
 
-namespace Spacerun
+namespace SpaceRun
 {
     static class Program
     {

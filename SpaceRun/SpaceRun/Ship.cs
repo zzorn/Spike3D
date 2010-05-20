@@ -16,6 +16,12 @@ namespace SpaceRun
 {
     public abstract class Ship : Entity
     {
+        protected float maxVelocity { get; set; }
+        protected float maxThrust { get; set; }
+
+        public override void Render(GraphicsDeviceManager graphics)
+        {
+        }
     }
 
 }

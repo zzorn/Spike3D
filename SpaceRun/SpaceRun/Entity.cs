@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,7 +69,7 @@ namespace SpaceRun
         /**
          * Render the entity to the specified context.
          */
-        public virtual void Render()
+        public virtual void Render(GraphicsDeviceManager graphics)
         {
             // TODO: Render model
         }
