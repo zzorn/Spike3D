@@ -22,7 +22,7 @@ namespace SpaceRun
 
         private static EntityManager instance;
 
-        public EntityManager get()
+        public static EntityManager get()
         {
             if (instance != null)
             {
