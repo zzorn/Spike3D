@@ -36,9 +36,23 @@ namespace SpaceRun
         {
             foreach (List<Entity> entityList in getNextEntityList())
             {
+                // Update all entities unless they're destroyed.
+                List<Entity> removedEntities = new List<Entity>();
                 foreach (Entity entity in entityList)
                 {
-                    entity.Update(gameTime);
+                    if (entity.isDestroyed())
+                    {
+                        removedEntities.Add(entity);
+                    }
+                    else
+                    {
+                        entity.Update(gameTime);
+                    }
+                }
+                // Remove all destroyed entities.
+                foreach (Entity entity in removedEntities)
+                {
+                    entityList.Remove(entity);
                 }
             }
         }

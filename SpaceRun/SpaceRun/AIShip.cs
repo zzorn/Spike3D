@@ -21,6 +21,8 @@ namespace SpaceRun
 
         public override void LogicUpdate(GameTime time)
         {
+            base.Update(time);
+
             if (target == null)
             {
                 target = getNearestPlayerShip(WAKE_UP_RANGE);
