@@ -1,0 +1,101 @@
+= SpaceRun Story =
+
+The player is an independent transport ship pilot, specialized at difficult and questionably legal operations.
+
+
+== Fractions ==
+
+=== Arms & Arms Corporation ===
+A huge corporate megaentity, controlling the oldest and most population dense systems with an iron fist of corruption and bureaucracy.  Originally arising from a weapons and biomedical conglomerate (as evident in the name).
+
+=== Independents ===
+A mismatch of individual merchenaries and merchants, mostly operating solo, and in general opposed to everyone.  Mostly united in their hate of the Corporation though, which classifies them as terrorists and hunts them down where they can.  Ranging from respectable traders and idealists to brutish space pirates without any morals.
+
+=== Brotherhood of Universal Singularity ===
+Fatalistic cult that is bent on collapsing the whole universe into a gravitational singularity, starting with individual star systems if so be.  The members are generally undercover in influential positions within the Corporation.
+
+
+
+== Missions ==
+Season 1: The Ariana Point Incident
+
+* Ariana is the name of the gas giant.
+* Ariana Point is the interstellar gate orbiting the gas giant.
+* The system doesn't have any habitable planets - it has had some mining activity, but it has mostly closed down.  It also has a secret Arms&Arms Corporation research facility for gravitational pulse devices, but that is not directly revealed in the game.
+* The Independent Ariana Trading Station is a station built over time from various mismatched ships, it was in active use for recreation and non-mineral transport when the mining was still ongoing and before the Corporation outlawed privately owned space stations.  Since then it was mostly abandoned for some time, until Tessa set up shop there, making it into a small hub for private traders in a backward system without much corporate presence.
+
+=== Episode 1 ===
+
+Black screen
+
+Text (fade in & out): "Space Run"
+Text (fade in & out): "Season 1, Episode 1"
+
+* Fade in from black
+
+Title Text: "Independent Ariana Trading Station"
+* View of huge gas giant (Ariana) with rings and moons, and a space station pieced together by odd bits and pieces is floating concealed near one ring.
+
+Narrative text:
+"I was an independent trader - a dangerous profession in a galaxy controlled by the Arms&Arms Corporation, who had outlawed private trade."
+"My last trading run had taken me to a small station off the beaten track, and I was looking for new cargo."
+
+Trading station operator (and owner) Tessa on the video console:
+"Hi there!  This just in - might interest you?  Apparently we have wrecked Arms&Arms transport near the gate on the other side of the planet - a contact of mine suggested it might have some interesting cargo.  Fancy a little looting run?"
+"You'll better stay within the ring - looks like it had a destroyer as an escort, it's hovering near the gate and waiting for a salvage ship.  Better not show up on their radars!"
+"I marked out the position for you - just follow the waypoints!"
+
+* Player gets to fly through the first few waypoints and avoid asteroids as a kind of gentle introduction to the game (each waypoint is a savepoint also btw).
+
+Halfway there:
+Tessa: "Oops, looks like they saw you!  There's some incoming fighters!"
+"Just try to rush in and grab the cargo containers."
+
+* Enemy fighters start traveling towards the player from the destroyer.
+
+Near the wrek:
+* debris is floating around, as well as cargo containers with waypoint markers.
+Tessa: "Looks like the transport is totally wrecked!  I wonder what happened to it?  Those Corporation transports are pretty sturdy."
+"But it looks like most of the loot is well packed and intact!  Just collect the containers by flying near them."
+
+When all container waypoints reached: 
+Tessa: "Good work!  Now get back here, but loose those fighters first!  We don't want them to follow you to this trading station!  I plotted out an evasive route for you."
+
+* Waypoints thread their way in zig zag through a dense asteroid field and behind a small moon.
+
+* At some waypoint the enemy fighters turn around and head back to the destroyer.
+
+When player reaches the last waypoint back at the station:
+Tessa: "Nicely done!  You lost the fighters!  Now lets have a look at this mystery cargo."
+
+* Fade to black
+text: "End of Episode 1"
+
+
+=== Episode 2 ===
+* Cargo turns out to be a bomb device of some sort
+* A fighter finds the trading station
+* Player has to destroy the fighter before it reaches the destroyer
+* But when player destroys the fighter, the destroyer has already rounded the planet, and is attacking the trading station
+
+=== Episode 3 ===
+* In desperation, it is decided to try to blow up the destroyer using the found bomb device
+* Player has to race to trading station, load the device (which is floating in a cargo container near the station, or something), and then fly close to the destroyer to attach the device
+* destroyer is huge, with several laser turrets and a fighter launch port
+* bomb target is at center of the bridge
+* After deposited the player has to flee
+* The bomb goes off - and off - and off - it creates a strong gravity pulse that crumbles the destroyer, pulling it towards the gas giant, and pulling up a swirl of gas and matter from the gas giant
+
+=== Episode 4 ===
+* The gravity pulse device has pulled the moons out of their orbit, and they are being sucked into a gravitation well along with the planet, which is deforming into a black hole.  Swirls of dust and asteroids spin around the epicentrum.
+* A Brother from the Brotherhood of Universal Singularity (who turns out to have arranged the transporter accident and informed Tessa about it) appears on screen gloating over how they will turn the whole universe into a gravitational singularity, one star system at a time
+* Tessa calls for help from the trading station falling into the black hole
+* Player has to race to trading station to rescure Tessa and the other crew, and then head to the gate
+* Stray corporate fighters fight everyone and Brotherhood Flying Prayerhouses appear from the gate to erase any witnesses
+
+
+
+
+
+
+
