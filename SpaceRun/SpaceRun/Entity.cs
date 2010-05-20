@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    class Entity
+    abstract class Entity
     {
         private Vector3 position;
         private Vector3 velocity;
@@ -33,8 +33,8 @@ namespace SpaceRun
 
             // TODO: Get surrounding forces (planet gravitation etc)
             Vector3 surroundingForces = new Vector3();
-            UpdatePhysics(time.ElapsedGameTime, surroundingForces);
-            UpdateMovement(time.ElapsedGameTime);
+            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds, surroundingForces);
+            UpdateMovement((float)time.ElapsedGameTime.TotalSeconds);
         }
 
         /**
