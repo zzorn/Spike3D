@@ -110,5 +110,14 @@ namespace SpaceRun
             Vector3 r = rotation * time; 
             heading += Quaternion.CreateFromYawPitchRoll(r.X, r.Y, r.Z);
         }
+
+        /**
+         * Ships and other destroyable entities can overwrite this.
+         * Entity manager will then know to remove it from the list.
+         */
+        public virtual bool isDestroyed()
+        {
+            return false;
+        }
     }
 }
