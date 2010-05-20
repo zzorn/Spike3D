@@ -22,7 +22,7 @@ namespace SpaceRun
 
         public override void LogicUpdate(GameTime time)
         {
-            base.Update(time);
+            base.LogicUpdate(time);
 
             if (target == null)
             {

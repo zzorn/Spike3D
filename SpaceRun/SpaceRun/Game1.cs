@@ -21,6 +21,7 @@ namespace SpaceRun
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,6 +50,10 @@ namespace SpaceRun
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            PlayerShip ship = new PlayerShip();
+            ship.model = Content.Load<Model>("models\\alpha_ship\\alpha_ship");
+            EntityManager.get().playerShips.Add(ship);
 
             // TODO: use this.Content to load your game content here
         }
