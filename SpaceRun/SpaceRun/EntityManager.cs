@@ -20,6 +20,7 @@ namespace SpaceRun
         public List<Entity> playerShips { get; protected set; }
         public List<Entity> aiShips { get; protected set; }
         public List<Entity> waypoints { get; protected set; }
+        public List<Entity> planets { get; protected set; }
 
         private static EntityManager instance;
 
@@ -34,7 +35,7 @@ namespace SpaceRun
 
         public void updateEntities(GameTime gameTime)
         {
-            foreach (List<Entity> entityList in getNextEntityList())
+            foreach (List<Entity> entityList in getEntityLists())
             {
                 // Update all entities unless they're destroyed.
                 List<Entity> removedEntities = new List<Entity>();
@@ -59,7 +60,7 @@ namespace SpaceRun
 
         public void renderEntities(GraphicsDeviceManager graphics)
         {
-            foreach (List<Entity> entityList in getNextEntityList())
+            foreach (List<Entity> entityList in getEntityLists())
             {
                 foreach (Entity entity in entityList)
                 {
@@ -68,12 +69,13 @@ namespace SpaceRun
             }
         }
 
-        private IEnumerable<List<Entity>> getNextEntityList()
+        private IEnumerable<List<Entity>> getEntityLists()
         {
             yield return asteroids;
             yield return playerShips;
             yield return aiShips;
             yield return waypoints;
+            yield return planets;
         }
 
         private EntityManager()
@@ -82,6 +84,7 @@ namespace SpaceRun
             playerShips = new List<Entity>();
             aiShips = new List<Entity>();
             waypoints = new List<Entity>();
+            planets = new List<Entity>();
         }
 
 

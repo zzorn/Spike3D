@@ -16,6 +16,8 @@ namespace SpaceRun
 {
     abstract public class Entity
     {
+        public const double GravitationalConstant = 6.67428E-11;
+
         public  Entity()
         {
             id = 0;
@@ -58,9 +60,7 @@ namespace SpaceRun
             LogicUpdate(time);
 
             // Physics
-            // TODO: Get surrounding forces (planet gravitation etc)
-            Vector3 environmentForces_N = new Vector3();
-            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds, environmentForces_N);
+            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds);
 
             // Movement
             UpdateMovement((float)time.ElapsedGameTime.TotalSeconds);
@@ -83,14 +83,17 @@ namespace SpaceRun
         /**
          * Update movement based on physical forces.
          */ 
-        public void UpdatePhysics(float time, Vector3 environmentForces_N)
+        public void UpdatePhysics(float time)
         {
+            // Calculate external forces
+            Vector3 externalForces_N = calculateExternalForces();
+
             // Thrust is in local coordinate space, so rotate it with the heading
             Matrix headingMatrix = Matrix.CreateFromQuaternion(heading);
             Vector3 rotatedThrust_N = Vector3.Transform(thrustVector_N, headingMatrix);
 
             // Calculate acceleration
-            Vector3 forces_N = rotatedThrust_N + environmentForces_N;
+            Vector3 forces_N = rotatedThrust_N + externalForces_N;
             acceleration = forces_N / mass_kg;
 
             // Turning
@@ -119,5 +122,24 @@ namespace SpaceRun
         {
             return false;
         }
+
+        private Vector3 calculateExternalForces()
+        {
+            Vector3 f = new Vector3();
+            foreach (Entity entity in EntityManager.get().planets)
+            {
+                if (entity != this && this.position != entity.position)
+                {
+                    Planet planet = (Planet)entity;
+                    Vector3 directionToPlanet = planet.position - this.position;
+                    directionToPlanet.Normalize();
+                    float squaredDistance = (this.position - planet.position).LengthSquared();
+                    f += directionToPlanet * (float)(GravitationalConstant * (this.mass_kg + planet.mass_kg) / squaredDistance);
+                }
+            }
+
+            return f;
+        }
+
     }
 }

@@ -16,6 +16,7 @@ namespace SpaceRun
 {
     public class AIShip : Ship
     {
+   
         private const float WAKE_UP_RANGE = 50.0f;
         private Entity target;
 
