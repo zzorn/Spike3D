@@ -47,6 +47,7 @@ namespace SpaceRun
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
 
+        public Model model {get; set; }
 
         /**
          * Updates AI, player input, game logic, physics, movement, etc.
@@ -67,8 +68,11 @@ namespace SpaceRun
 
         /**
          * Render the entity to the specified context.
-         */ 
-        public abstract void Render(); // TODO: Add graphics object?
+         */
+        public void Render()
+        {
+            // TODO: Render model
+        }
 
         /**
          * Does logic update for the entity (AI or player control, state changes, etc).
