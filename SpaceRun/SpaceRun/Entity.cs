@@ -23,12 +23,12 @@ namespace SpaceRun
         public Vector3 acceleration { get; set; }
 
         public Quaternion heading { get; set; }
-        public Quaternion rotation { get; set; }
-        public Quaternion torque { get; set; }
+        public Vector3 rotation { get; set; }
+        public Vector3 torque { get; set; }
 
         public float mass_kg { get; set; }
         public float boundingRadius { get; set; }
-        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius * boundingRadius) / 5.0f; } private set; } // Assumes solid sphere approximation
+        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius * boundingRadius) / 5.0f; } private set{} } // Assumes solid sphere approximation
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
 
@@ -87,7 +87,9 @@ namespace SpaceRun
             position += velocity * time;
 
             rotation += torque * time;
-            heading += rotation * time;
+
+            Vector3 r = rotation * time; 
+            heading += Quaternion.CreateFromYawPitchRoll(r.X, r.Y, r.Z);
         }
     }
 }
