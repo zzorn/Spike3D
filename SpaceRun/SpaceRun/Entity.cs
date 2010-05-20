@@ -26,7 +26,7 @@ namespace SpaceRun
             rotation = Vector3.Zero;
             torque = Vector3.Zero;
             mass_kg = 1;
-            boundingRadius_m = 1;
+            radius_m = 1;
             thrustVector_N = Vector3.Zero;
             torqueThrustVector_N = Vector3.Zero;
         }
@@ -42,8 +42,8 @@ namespace SpaceRun
         public Vector3 torque { get; set; }
 
         public float mass_kg { get; set; }
-        public float boundingRadius_m { get; set; }
-        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius_m * boundingRadius_m) / 5.0f; } private set{} } // Assumes solid sphere approximation
+        public float radius_m { get; set; }
+        public float rotationalInertia { get { return (2 * mass_kg * radius_m * radius_m) / 5.0f; } private set{} } // Assumes solid sphere approximation
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
 
@@ -69,7 +69,7 @@ namespace SpaceRun
         /**
          * Render the entity to the specified context.
          */
-        public void Render()
+        public virtual void Render()
         {
             // TODO: Render model
         }
