@@ -55,6 +55,11 @@ namespace SpaceRun
             ship.model = Content.Load<Model>("models\\alpha_ship\\alpha_ship");
             EntityManager.get().playerShips.Add(ship);
 
+            PlayerShip ship2 = new PlayerShip();
+            ship2.model = ship.model;
+            ship2.position = new Vector3(10, 10, -100);
+            EntityManager.get().playerShips.Add(ship2);
+
             // TODO: use this.Content to load your game content here
         }
 

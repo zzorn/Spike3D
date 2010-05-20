@@ -37,7 +37,7 @@ namespace SpaceRun
             }
         }
 
-        public override void Render(GraphicsDeviceManager graphics)
+        public override void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
         {
         }
 
