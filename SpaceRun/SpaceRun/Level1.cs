@@ -14,16 +14,14 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    public abstract class Level
-    {
-        public abstract void populateLevel();
 
-        public void createWaypoint(Vector3 position)
+    public class Level1 : Level
+    {
+        public override void populateLevel()
         {
-            Waypoint waypoint = new Waypoint();
-            waypoint.radius_m = 10.0f;
-            waypoint.position = position;
-            EntityManager.get().waypoints.Add(waypoint);
+            createWaypoint(new Vector3(100.0f, 200.0f, 150.0f));
+            createWaypoint(new Vector3(300.0f, 200.0f, 150.0f));
+            createWaypoint(new Vector3(1500.0f, 200.0f, 150.0f));
         }
     }
 }
