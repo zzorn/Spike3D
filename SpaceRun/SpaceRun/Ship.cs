@@ -18,6 +18,10 @@ namespace SpaceRun
     {
         protected float maxVelocity { get; set; }
         protected float maxThrust { get; set; }
+
+        public override void Render(GraphicsDeviceManager graphics)
+        {
+        }
     }
 
 }

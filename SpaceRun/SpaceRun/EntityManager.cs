@@ -24,7 +24,7 @@ namespace SpaceRun
 
         public static EntityManager get()
         {
-            if (instance != null)
+            if (instance == null)
             {
                 instance = new EntityManager();
             }

@@ -21,8 +21,6 @@ namespace SpaceRun
 
         public override void LogicUpdate(GameTime time)
         {
-            float millisElapsed = (float)time.ElapsedGameTime.TotalMilliseconds;
-
             if (target == null)
             {
                 target = getNearestPlayerShip(WAKE_UP_RANGE);
@@ -35,10 +33,6 @@ namespace SpaceRun
                 thrustVector_N = vectorToPlayer * maxThrust;
             }
 
-        }
-
-        public override void Render(GraphicsDeviceManager graphics)
-        {
         }
 
         private Entity getNearestPlayerShip(float maxDistance)
