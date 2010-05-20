@@ -91,6 +91,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Ship.cs" />
+    <Compile Include="Waypoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

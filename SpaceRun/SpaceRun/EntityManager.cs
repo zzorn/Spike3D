@@ -19,6 +19,7 @@ namespace SpaceRun
         public List<Entity> asteroids { get; protected set; }
         public List<Entity> playerShips { get; protected set; }
         public List<Entity> aiShips { get; protected set; }
+        public List<Entity> waypoints { get; protected set; }
 
         private static EntityManager instance;
 
@@ -58,6 +59,7 @@ namespace SpaceRun
             yield return asteroids;
             yield return playerShips;
             yield return aiShips;
+            yield return waypoints;
         }
 
         private EntityManager()
@@ -65,6 +67,7 @@ namespace SpaceRun
             asteroids = new List<Entity>();
             playerShips = new List<Entity>();
             aiShips = new List<Entity>();
+            waypoints = new List<Entity>();
         }
 
 
