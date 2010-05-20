@@ -58,10 +58,10 @@ namespace SpaceRun
             Random rand = new Random();
             for (int i = 0; i < 100; i++)
             {
-                PlayerShip ship2 = new PlayerShip();
+                AIShip ship2 = new AIShip();
                 ship2.model = ship.model;
                 ship2.position = new Vector3(rand.Next(5000) - 2500, rand.Next(5000) - 2500, rand.Next(5000) - 2500);
-                EntityManager.get().playerShips.Add(ship2);
+                EntityManager.get().aiShips.Add(ship2);
             }
 
             // TODO: use this.Content to load your game content here

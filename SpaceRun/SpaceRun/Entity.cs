@@ -82,7 +82,7 @@ namespace SpaceRun
                     {
                         effect.EnableDefaultLighting();
                         effect.PreferPerPixelLighting = true;
-                        effect.World = Matrix.CreateFromQuaternion(heading) * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
+                        effect.World = Matrix.CreateFromQuaternion(Quaternion.Identity) * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
                         effect.Projection = cameraProjectionMatrix;
                         effect.View = cameraViewMatrix;
                     }

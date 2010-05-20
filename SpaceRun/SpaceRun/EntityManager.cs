@@ -62,20 +62,21 @@ namespace SpaceRun
 
         public void renderEntities(GraphicsDeviceManager graphics)
         {
-            cameraEntity = playerShips[0]; // HACK
+            if (cameraEntity == null) cameraEntity = playerShips[0]; // HACK
 
             // View from the perspective of the camera entity
-            Matrix cameraViewMatrix = Matrix.CreateFromQuaternion(Quaternion.Identity) * Matrix.CreateTranslation(cameraEntity.position);
+            //Matrix cameraViewMatrix = Matrix.CreateFromQuaternion(cameraEntity.heading) * Matrix.CreateTranslation(cameraEntity.position);
+            Matrix cameraViewMatrix = Matrix.CreateLookAt(new Vector3(200, 200, -200) + cameraEntity.position, cameraEntity.position, Vector3.Up);
             Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphics.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000000f);
             
             foreach (List<Entity> entityList in getEntityLists())
             {
                 foreach (Entity entity in entityList)
                 {
-                    if (cameraEntity != entity)
-                    {
+                    //if (cameraEntity != entity)
+                    //{
                         entity.Render(graphics, cameraViewMatrix, cameraProjectionMatrix);
-                    }
+                    //}
                 }
             }
         }
