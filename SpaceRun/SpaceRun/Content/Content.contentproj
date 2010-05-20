@@ -38,32 +38,135 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\alpha_ship\alpha_ship.fbx">
+    <Compile Include="media\models\alpha_ship\alpha_ship.fbx">
       <Name>alpha_ship</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="models\alpha_ship\alpha_ship_cannon.fbx">
+    <Compile Include="media\models\alpha_ship\alpha_ship_cannon.fbx">
       <Name>alpha_ship_cannon</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="models\alpha_ship\alpha_ship_cannon_base.fbx">
+    <Compile Include="media\models\alpha_ship\alpha_ship_cannon_base.fbx">
       <Name>alpha_ship_cannon_base</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\alpha_ship\textures\ship_color.png">
+    <Compile Include="media\models\alpha_ship\textures\ship_color.png">
       <Name>ship_color</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="models\alpha_ship\textures\ship_luminous.png">
+    <Compile Include="media\models\alpha_ship\textures\ship_luminous.png">
       <Name>ship_luminous</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\asteroid.png">
+      <Name>asteroid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\dust-1.png">
+      <Name>dust-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\dust-2.png">
+      <Name>dust-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\dust-3.png">
+      <Name>dust-3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\dust-4.png">
+      <Name>dust-4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hightech-texture-dark.png">
+      <Name>hightech-texture-dark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hightech-texture-organic.png">
+      <Name>hightech-texture-organic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hightech-texture-regular.png">
+      <Name>hightech-texture-regular</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-bonus-1.png">
+      <Name>hud-bonus-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-bonus-2.png">
+      <Name>hud-bonus-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-enemy-1.png">
+      <Name>hud-enemy-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-enemy-2.png">
+      <Name>hud-enemy-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-waypoint-1.png">
+      <Name>hud-waypoint-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\hud-waypoint-2.png">
+      <Name>hud-waypoint-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\planet-gas.png">
+      <Name>planet-gas</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\space-fog-1.png">
+      <Name>space-fog-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\space-fog-2.png">
+      <Name>space-fog-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\space-fog-3.png">
+      <Name>space-fog-3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\star-1.png">
+      <Name>star-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\star-2.png">
+      <Name>star-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\textures\star-3.png">
+      <Name>star-3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

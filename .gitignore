@@ -3,3 +3,5 @@ SpaceRun/SpaceRun/Content/obj
 SpaceRun/SpaceRun/obj
 SpaceRun/SpaceRun/bin
 *.suo
+*.user
+*.cachefile

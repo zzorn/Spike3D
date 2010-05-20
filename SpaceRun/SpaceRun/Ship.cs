@@ -37,10 +37,6 @@ namespace SpaceRun
             }
         }
 
-        public override void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
-        {
-        }
-
         public void takeDamage(float damageAmount)
         {
             if (shield >= 0)

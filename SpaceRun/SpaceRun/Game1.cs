@@ -52,15 +52,15 @@ namespace SpaceRun
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             PlayerShip ship = new PlayerShip();
-            ship.model = Content.Load<Model>("models\\alpha_ship\\alpha_ship");
+            ship.model = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
             EntityManager.get().playerShips.Add(ship);
 
             Random rand = new Random();
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 PlayerShip ship2 = new PlayerShip();
                 ship2.model = ship.model;
-                ship2.position = new Vector3(0, 0, 0);
+                ship2.position = new Vector3(rand.Next(5000) - 2500, rand.Next(5000) - 2500, rand.Next(5000) - 2500);
                 EntityManager.get().playerShips.Add(ship2);
             }
 
@@ -98,12 +98,15 @@ namespace SpaceRun
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Magenta);
+
+            GraphicsDevice.RenderState.DepthBufferEnable = true;
+            GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
 
             EntityManager.get().renderEntities(graphics);
 
             Matrix cameraViewMatrix = Matrix.CreateLookAt(Vector3.Zero, new Vector3(-1.0f, -1.0f, 1.0f), Vector3.Up);
-            Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), graphics.GraphicsDevice.Viewport.AspectRatio, 0.001f, 10000.0f);
+            Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 10000.0f);
             
             foreach (ModelMesh mesh in EntityManager.get().playerShips[0].model.Meshes)
             {
