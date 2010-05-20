@@ -16,6 +16,21 @@ namespace SpaceRun
 {
     abstract public class Entity
     {
+        public  Entity()
+        {
+            id = 0;
+            position = Vector3.Zero;
+            velocity = Vector3.Zero;
+            acceleration = Vector3.Zero;
+            heading = Quaternion.Identity;
+            rotation = Vector3.Zero;
+            torque = Vector3.Zero;
+            mass_kg = 1;
+            boundingRadius_m = 1;
+            thrustVector_N = Vector3.Zero;
+            torqueThrustVector_N = Vector3.Zero;
+        }
+
         public long id { get; set; }
 
         public Vector3 position { get; set; }
@@ -27,8 +42,8 @@ namespace SpaceRun
         public Vector3 torque { get; set; }
 
         public float mass_kg { get; set; }
-        public float boundingRadius { get; set; }
-        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius * boundingRadius) / 5.0f; } private set{} } // Assumes solid sphere approximation
+        public float boundingRadius_m { get; set; }
+        public float rotationalInertia { get { return (2 * mass_kg * boundingRadius_m * boundingRadius_m) / 5.0f; } private set{} } // Assumes solid sphere approximation
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
 
