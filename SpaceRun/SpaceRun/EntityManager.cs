@@ -21,6 +21,7 @@ namespace SpaceRun
         public List<Entity> aiShips { get; protected set; }
         public List<Entity> waypoints { get; protected set; }
         public List<Entity> planets { get; protected set; }
+        public List<Entity> entities { get; protected set; }
 
         public Entity cameraEntity { get; set; }
 
@@ -91,6 +92,7 @@ namespace SpaceRun
             yield return aiShips;
             yield return waypoints;
             yield return planets;
+            yield return entities;
         }
 
         private EntityManager()
@@ -100,6 +102,7 @@ namespace SpaceRun
             aiShips = new List<Entity>();
             waypoints = new List<Entity>();
             planets = new List<Entity>();
+            entities = new List<Entity>();
         }
 
 

@@ -66,6 +66,17 @@ namespace SpaceRun
             ship.model = ModelManager.get().getModel(ModelType.PLAYER_SHIP);
             ship.mass_kg = 10000;
             EntityManager.get().playerShips.Add(ship);
+
+            // Space dust
+            /* // TODO: Use some ready made particle engine.
+            List<Texture2D> spaceDust = new List<Texture2D>();
+            spaceDust.Add(Content.Load<Texture2D>("media\\textures\\dust-1"));
+            spaceDust.Add(Content.Load<Texture2D>("media\\textures\\dust-2"));
+            spaceDust.Add(Content.Load<Texture2D>("media\\textures\\dust-3"));
+            spaceDust.Add(Content.Load<Texture2D>("media\\textures\\dust-4"));
+            ParticleSystem dust = new ParticleSystem(ship, spaceDust, 1, 1, 1000, false, float.PositiveInfinity);
+            EntityManager.get().entities.Add(dust);
+            */
         }
 
         /// <summary>
