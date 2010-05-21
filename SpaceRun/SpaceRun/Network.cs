@@ -29,8 +29,7 @@ namespace SpaceRun
         int maxNetworkPlayers = 8;
 
         /// <summary>
-        /// Updates the state of the network session, moving the players
-        /// around and synchronizing their state over the network.
+        /// Updates the state of the network session.
         /// </summary>
         protected void Updatesession()
         {
@@ -54,16 +53,37 @@ namespace SpaceRun
             }
         }
 
-        private void BroadCastPlayerShipData()
+        //Server sending player ship data to all other clients
+        private void BroadCastPlayerShipData(LocalNetworkGamer server)
         {
             packetWriter.Write((Int32)GamePacketType.PlayerShip);
+
+            int playerShipCount = EntityManager.get().playerShips.Count;
+            packetWriter.Write(playerShipCount);
+
+            for (int i = 0; i < playerShipCount; i++)
+            {
+                PlayerShip ship = (PlayerShip)EntityManager.get().playerShips[i];
+                packetWriter.Write(ship.entityID);
+                packetWriter.Write((Int32)EntityEventType.State);
+                packetWriter.Write(ship.hull);
+                packetWriter.Write(ship.position);
+                packetWriter.Write(ship.heading);
+                packetWriter.Write(ship.velocity);
+                packetWriter.Write(ship.rotation);
+            }
+
+            // Send data of all player ships to all clients
+            server.SendData(packetWriter, SendDataOptions.InOrder);
         }
 
+        //Client sending local player's ship data to server
         private void SendPlayerShipData(LocalNetworkGamer gamer)
         {
+            int playerShipCount = EntityManager.get().playerShips.Count;
             PlayerShip ship = null;
 
-            for (int i = 0; i < EntityManager.get().playerShips.Count; i++)
+            for (int i = 0; i < playerShipCount; i++)
             {
                 if (((PlayerShip)EntityManager.get().playerShips[i]).ownerID == gamer.Id)
                 {
@@ -78,6 +98,7 @@ namespace SpaceRun
             }
             
             packetWriter.Write((Int32)GamePacketType.PlayerShip);
+            packetWriter.Write(playerShipCount);
             packetWriter.Write(ship.entityID);
             packetWriter.Write((Int32)EntityEventType.State);
             packetWriter.Write(ship.hull);
@@ -86,8 +107,8 @@ namespace SpaceRun
             packetWriter.Write(ship.velocity);
             packetWriter.Write(ship.rotation);
 
-            // Send the data to server  of the the session.
-            gamer.SendData(packetWriter, SendDataOptions.InOrder);
+            // Send the data to server of the the session.
+            gamer.SendData(packetWriter, SendDataOptions.InOrder, session.Host);
         }
 
         /// <summary>
@@ -111,7 +132,7 @@ namespace SpaceRun
                 switch (type)
                 {
                     case GamePacketType.PlayerShip:
-                        ReadPlayerShipData();
+                        ReadPlayerShipData(gamer);
                         break;
                     default:
                         //Do nothing, unknown GamePacketType
@@ -120,7 +141,7 @@ namespace SpaceRun
             }
         }
 
-        private void ReadPlayerShipData()
+        private void ReadPlayerShipData(LocalNetworkGamer gamer)
         {
             //Player ships
             int playerShipCount = packetReader.ReadInt32();
@@ -128,8 +149,20 @@ namespace SpaceRun
             for (int i = 0; i < playerShipCount; i++)
             {
                 int shipID = packetReader.ReadInt32();
-                EntityEventType type = (EntityEventType)packetReader.ReadInt32();
                 PlayerShip ship = (PlayerShip)EntityManager.get().playerShips[shipID];
+
+                //Ignore local gamers' shipdata, we don't need that
+                if (ship.ownerID == gamer.Id)
+                {
+                    packetReader.ReadInt32();
+                    packetReader.ReadSingle();
+                    packetReader.ReadVector3();
+                    packetReader.ReadQuaternion();
+                    packetReader.ReadVector3();
+                    packetReader.ReadVector3();
+                }
+
+                EntityEventType type = (EntityEventType)packetReader.ReadInt32();
 
                 switch (type)
                 {
