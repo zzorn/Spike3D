@@ -16,6 +16,8 @@ namespace SpaceRun
 {
     public class PlayerShip : Ship
     {
+        public int entityID; //Index position in entity manager category
+        public byte ownerID; //Unique identifier to link up with the network gamer entity
         private int currentWaypointIndex;
 
         public override void LogicUpdate(GameTime time, float t)

@@ -30,9 +30,9 @@ namespace SpaceRun
             hull = maxHull;
         }
 
-        public float energy { get; protected set; }
-        public float hull { get; protected set; }
-        public float shield { get; protected set; }
+        public float energy { get; set; }
+        public float hull { get; set; }
+        public float shield { get; set; }
 
         public float maxEnergy { get; protected set; }
         public float maxHull { get; protected set; }

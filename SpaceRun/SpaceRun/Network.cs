@@ -14,31 +14,10 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    class Placeholder_PlayerShip
-    {
-        public int id;
-        public float health;
-        public Vector3 position;
-        public Quaternion heading; //rotational state
-        public Vector3 velocity;
-        public Vector3 rotation; //angular movement
-
-        public Placeholder_PlayerShip(int a_id)
-        {
-            id = a_id;
-        }
-    }
-
     class Network
     {
-        #region haxorz
-
-        public Placeholder_PlayerShip[] playerShips = new Placeholder_PlayerShip[2];
-
         private enum EntityEventType { State, Remove }
-        private enum GamePacketType { Connect, Disconnect, Ship, Asteroid }
-
-        #endregion
+        private enum GamePacketType { PlayerShip, Ship, Asteroid }
 
         NetworkSession session;
         PacketWriter packetWriter = new PacketWriter();
@@ -59,85 +38,55 @@ namespace SpaceRun
             if (session == null)
                 return;
 
-            // Update our locally controlled tanks, and send their
-            // latest position data to everyone in the session.
+            // Send our local player's ship data to server
             foreach (LocalNetworkGamer gamer in session.LocalGamers)
             {
-                UpdateLocalGamer(gamer);
+                SendPlayerShipData(gamer);
             }
 
             // Pump the underlying session object.
             session.Update();
 
-            // Read any packets telling us the position of remotely controlled player.
+            // Read any incoming packets.
             foreach (LocalNetworkGamer gamer in session.LocalGamers)
             {
                 ReadIncomingPackets(gamer);
             }
         }
 
-        private void UpdateLocalGamer(LocalNetworkGamer gamer)
+        private void BroadCastPlayerShipData()
         {
-            //Check if the gamer is host and write appropriate network packets
-            /*if (player[1].playerType == LocalPlayer)
+            packetWriter.Write((Int32)GamePacketType.PlayerShip);
+        }
+
+        private void SendPlayerShipData(LocalNetworkGamer gamer)
+        {
+            PlayerShip ship = null;
+
+            for (int i = 0; i < EntityManager.get().playerShips.Count; i++)
             {
-                packetWriter.Write(gameState);
-                packetWriter.Write(player[1].alive);
-                packetWriter.Write(player[1].playerReady);
-                packetWriter.Write(player[1].position);
-                packetWriter.Write(player[1].grabPos);
-                packetWriter.Write(player[1].viewAngle);
-                packetWriter.Write(player[1].health);
-                packetWriter.Write(player[2].health);
-                packetWriter.Write(player[1].hasPowerUp);
-                packetWriter.Write(player[2].hasPowerUp);
-                packetWriter.Write(powerUp.alive);
-                packetWriter.Write(gravityWell.alive);
-                packetWriter.Write(gravityWell.deployed);
-                packetWriter.Write(gravityWell.position);
-                packetWriter.Write(ball.alive);
-                packetWriter.Write(ball.position);
-                packetWriter.Write(ball.charge);
-                packetWriter.Write(ball.whoGrabbed);
-                packetWriter.Write(ball.lastHitter);
-
-                bool ballReleased = false;
-                if (player[1].gamePadState.Triggers.Left == 0.0f &&
-                    player[1].gamePadState.Triggers.Right == 0.0f)
-                    ballReleased = true;
-
-                packetWriter.Write(ballReleased);
+                if (((PlayerShip)EntityManager.get().playerShips[i]).ownerID == gamer.Id)
+                {
+                    ship = (PlayerShip)EntityManager.get().playerShips[i];
+                }
             }
-            if (player[2].playerType == LocalPlayer)
+
+            //If we didn't find the ship for the local player...
+            if (ship == null)
             {
-                packetWriter.Write(player[2].alive);
-                packetWriter.Write(player[2].playerReady);
-                packetWriter.Write(player[2].position);
-                packetWriter.Write(player[2].grabPos);
-                packetWriter.Write(player[2].viewAngle);
-                packetWriter.Write(ball.position);
-                packetWriter.Write(ball.charge);
-                packetWriter.Write(ball.whoGrabbed);
-                packetWriter.Write(ball.lastHitter);
+                return;
+            }
+            
+            packetWriter.Write((Int32)GamePacketType.PlayerShip);
+            packetWriter.Write(ship.entityID);
+            packetWriter.Write((Int32)EntityEventType.State);
+            packetWriter.Write(ship.hull);
+            packetWriter.Write(ship.position);
+            packetWriter.Write(ship.heading);
+            packetWriter.Write(ship.velocity);
+            packetWriter.Write(ship.rotation);
 
-                bool ballReleased = false;
-                if (ball.whoGrabbed == 2 &&
-                    player[2].gamePadState.Triggers.Left == 0.0f &&
-                    player[2].gamePadState.Triggers.Right == 0.0f)
-                    ballReleased = true;
-
-                packetWriter.Write(ballReleased);
-
-                bool isGWGReleased = false;
-                if (player[2].hasPowerUp &&
-                    (player[2].gamePadState.Buttons.LeftShoulder == ButtonState.Pressed ||
-                    player[2].gamePadState.Buttons.RightShoulder == ButtonState.Pressed))
-                    isGWGReleased = true;
-
-                packetWriter.Write(isGWGReleased);
-            }*/
-
-            // Send the data to everyone in the session.
+            // Send the data to server  of the the session.
             gamer.SendData(packetWriter, SendDataOptions.InOrder);
         }
 
@@ -158,31 +107,48 @@ namespace SpaceRun
                 if (sender.IsLocal)
                     continue;
 
-                //Player ships
-                int playerShipCount = packetReader.ReadInt32();
-
-                for (int i = 0; i < playerShipCount; i++)
+                GamePacketType type = (GamePacketType)packetReader.ReadInt32();
+                switch (type)
                 {
-                    int shipID = packetReader.ReadInt32();
-                    EntityEventType type = (EntityEventType)packetReader.ReadInt32();
+                    case GamePacketType.PlayerShip:
+                        ReadPlayerShipData();
+                        break;
+                    default:
+                        //Do nothing, unknown GamePacketType
+                        break;
+                }
+            }
+        }
 
-                    switch (type)
-                    {
-                        case EntityEventType.State:
-                            if (playerShips[shipID] == null) //Didn't exist, so this is a new entity
-                            {
-                                playerShips[shipID] = new Placeholder_PlayerShip(shipID);
-                            }
-                            playerShips[shipID].health = packetReader.ReadSingle();
-                            playerShips[shipID].position = packetReader.ReadVector3();
-                            playerShips[shipID].heading = packetReader.ReadQuaternion();
-                            playerShips[shipID].velocity = packetReader.ReadVector3();
-                            playerShips[shipID].rotation = packetReader.ReadVector3();
-                            break;
-                        case EntityEventType.Remove:
-                            playerShips[shipID] = null;
-                            break;
-                    }
+        private void ReadPlayerShipData()
+        {
+            //Player ships
+            int playerShipCount = packetReader.ReadInt32();
+
+            for (int i = 0; i < playerShipCount; i++)
+            {
+                int shipID = packetReader.ReadInt32();
+                EntityEventType type = (EntityEventType)packetReader.ReadInt32();
+                PlayerShip ship = (PlayerShip)EntityManager.get().playerShips[shipID];
+
+                switch (type)
+                {
+                    case EntityEventType.State:
+                        if (ship == null) //Didn't exist, so this is a new entity
+                        {
+                            //FIXME: Need a way to create a new player ship with entity manager
+                            //ship = EntityManager.;
+                        }
+                        ship.hull = packetReader.ReadSingle();
+                        ship.position = packetReader.ReadVector3();
+                        ship.heading = packetReader.ReadQuaternion();
+                        ship.velocity = packetReader.ReadVector3();
+                        ship.rotation = packetReader.ReadVector3();
+                        break;
+                    case EntityEventType.Remove:
+                        //FIXME: this is not the right way to destroy a player ship entity
+                        ship = null;
+                        break;
                 }
             }
         }
