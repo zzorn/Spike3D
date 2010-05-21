@@ -93,7 +93,7 @@ namespace SpaceRun
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(0, 0.05f, 0.1f));
+            GraphicsDevice.Clear(new Color(0, 0, 0.02f));
 
             GraphicsDevice.RenderState.DepthBufferEnable = true;
             GraphicsDevice.RenderState.DepthBufferWriteEnable = true;

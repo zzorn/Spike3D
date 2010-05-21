@@ -34,6 +34,7 @@ namespace SpaceRun
             Entity entity = new Asteroid();
             entity.radius_m = 0.9f;
             entity.position = position;
+            entity.mass_kg = 100000;
             entity.scale = (float)(rand.NextDouble() * 3 + 0.2f);
             entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.3f;
             entity.velocity = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.1f;
@@ -47,6 +48,7 @@ namespace SpaceRun
             Entity entity = new AIShip();
             entity.radius_m = 1.0f;
             entity.position = position;
+            entity.mass_kg = 10000;
             entity.model = ModelManager.get().getModel(ModelType.ENEMY_FIGHTER);
             EntityManager.get().aiShips.Add(entity);
         }
@@ -57,7 +59,7 @@ namespace SpaceRun
             entity.radius_m = 1000.0f;
             entity.scale = 1000.0f;
             entity.position = position;
-            entity.mass_kg = 1e15f;
+            entity.mass_kg = 1e20f;
             entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.01f;
             entity.model = ModelManager.get().getModel(ModelType.PLANET);
             EntityManager.get().planets.Add(entity);

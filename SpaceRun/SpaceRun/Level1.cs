@@ -24,7 +24,7 @@ namespace SpaceRun
             createWaypoint(new Vector3(1500.0f, 200.0f, 150.0f));
 
             Random rand = new Random();
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < 400; i++)
             {
                 createAsteroid(new Vector3(rand.Next(50) - 25, rand.Next(50) - 25, rand.Next(500) - 500));
             }
