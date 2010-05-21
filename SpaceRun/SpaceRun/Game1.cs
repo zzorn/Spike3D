@@ -58,6 +58,7 @@ namespace SpaceRun
 
             PlayerShip ship = new PlayerShip();
             ship.model = ModelManager.get().getModel(ModelType.PLAYER_SHIP);
+            ship.mass_kg = 10000;
             EntityManager.get().playerShips.Add(ship);
         }
 

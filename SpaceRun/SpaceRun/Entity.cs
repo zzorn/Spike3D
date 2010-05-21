@@ -31,6 +31,7 @@ namespace SpaceRun
             radius_m = 1;
             thrustVector_N = Vector3.Zero;
             torqueThrustVector_N = Vector3.Zero;
+            scale = 1;
         }
 
         public long id { get; set; }
@@ -45,6 +46,7 @@ namespace SpaceRun
 
         public float mass_kg { get; set; }
         public float radius_m { get; set; }
+        public float scale { get; set; }
         public float rotationalInertia { get { return (2 * mass_kg * radius_m * radius_m) / 5.0f; } private set{} } // Assumes solid sphere approximation
         public Vector3 thrustVector_N { get; set; }
         public Vector3 torqueThrustVector_N { get; set; }
@@ -83,8 +85,6 @@ namespace SpaceRun
          */
         public virtual void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
         {
-            float scale = 1;
-
             // Render model mesh
             if (model != null)
             {
