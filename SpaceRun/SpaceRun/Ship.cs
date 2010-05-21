@@ -23,6 +23,7 @@ namespace SpaceRun
             maxHull = 100;
             maxThrust = 10;
             maxTorqueThrust = 10;
+            shieldRechargeRate = 5.0f;
 
             energy = maxEnergy;
             shield = maxShield;
@@ -36,6 +37,7 @@ namespace SpaceRun
         public float maxEnergy { get; protected set; }
         public float maxHull { get; protected set; }
         public float maxShield { get; protected set; }
+        public float shieldRechargeRate { get; protected set; }
 
         protected float maxThrust { get; set; }
         protected float maxTorqueThrust { get; set; }
@@ -45,7 +47,7 @@ namespace SpaceRun
 
         public override void LogicUpdate(GameTime time, float t)
         {
-            shield +=  t / 10.0f;
+            shield += shieldRechargeRate * t;
             if (shield > maxShield)
             {
                 shield = maxShield;

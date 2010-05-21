@@ -16,20 +16,17 @@ namespace SpaceRun
 {
     public class Asteroid : Entity
     {
-
-
         public override void LogicUpdate(GameTime time, float t)
         {
             foreach (Entity player in EntityManager.get().playerShips)
             {
-                if (Vector3.Distance(position, player.position) < radius_m)
+                if (Vector3.Distance(position, player.position + player.velocity * t) < radius_m)
                 {
                     Ship playerShip = ((Ship)player);
 
-                    playerShip.takeDamage(playerShip.velocity.Length() / 1000);
-                    playerShip.velocity = -player.velocity * 0.1f;
+                    playerShip.takeDamage(playerShip.velocity.Length() * 10);
+                    playerShip.velocity = -player.velocity * 0.5f;
                     playerShip.acceleration = Vector3.Zero;
-
                 }
             }
         }
