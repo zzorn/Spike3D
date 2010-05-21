@@ -40,6 +40,8 @@ namespace SpaceRun
         protected float maxThrust { get; set; }
         protected float maxTorqueThrust { get; set; }
 
+        protected float stabilizerCounter; 
+
 
         public override void LogicUpdate(GameTime time, float t)
         {
@@ -50,15 +52,20 @@ namespace SpaceRun
             }
         }
 
-        protected void RotationStabilization(float time)
+        protected void Stabilization(float time)
         {
             /*
             Vector3 anti = new Vector3(rotation.X, rotation.Y, rotation.Z);
             anti.Normalize();
             torqueThrustVector_N -= anti * maxTorqueThrust * time;
             */
-
-            rotation *= 0.99f ;
+            stabilizerCounter += time;
+            if (stabilizerCounter >= 0.1f)
+            {
+                rotation *= 0.95f;
+                velocity *= 0.95f;
+                stabilizerCounter -= 0.1f;
+            }
         }
 
         public void takeDamage(float damageAmount)

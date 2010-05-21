@@ -22,6 +22,12 @@ namespace SpaceRun
             createWaypoint(new Vector3(100.0f, 200.0f, 150.0f));
             createWaypoint(new Vector3(300.0f, 200.0f, 150.0f));
             createWaypoint(new Vector3(1500.0f, 200.0f, 150.0f));
+
+            Random rand = new Random();
+            for (int i = 0; i < 200; i++)
+            {
+                createAsteroid(new Vector3(rand.Next(50) - 25, rand.Next(50) - 25, rand.Next(50) - 25));
+            }
         }
     }
 }

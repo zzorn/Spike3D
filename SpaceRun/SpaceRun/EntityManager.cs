@@ -65,6 +65,7 @@ namespace SpaceRun
             if (cameraEntity == null) cameraEntity = playerShips[0]; // HACK
 
             // View from the perspective of the camera entity
+
             Matrix rot = Matrix.CreateFromQuaternion(cameraEntity.heading);
             Vector3 camUp = Vector3.Transform(Vector3.Up, rot);
             Vector3 camForward = cameraEntity.position + Vector3.Transform(Vector3.Forward, rot);
@@ -75,10 +76,10 @@ namespace SpaceRun
             {
                 foreach (Entity entity in entityList)
                 {
-                    //if (cameraEntity != entity)
-                    //{
+                    if (cameraEntity != entity)
+                    {
                         entity.Render(graphics, cameraViewMatrix, cameraProjectionMatrix);
-                    //}
+                    }
                 }
             }
         }
