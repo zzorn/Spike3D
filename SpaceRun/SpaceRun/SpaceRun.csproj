@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIShip.cs" />
+    <Compile Include="Asteroid.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="Level.cs" />

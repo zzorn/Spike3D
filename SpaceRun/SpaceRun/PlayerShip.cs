@@ -35,7 +35,7 @@ namespace SpaceRun
             }
             if (thrustVector_N.LengthSquared() == 0 && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                thrustVector_N = new Vector3(0, 0, 10);
+                thrustVector_N = new Vector3(0, 0, 100);
             }
 
             List<Entity> waypoints = EntityManager.get().waypoints;
