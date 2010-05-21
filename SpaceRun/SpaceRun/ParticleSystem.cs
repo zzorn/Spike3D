@@ -26,6 +26,7 @@ namespace SpaceRun
         public Color endColor = Color.White;
         public float rot = 0;
         public float alpha = 1f;
+        public float size = 1;
 
 
         public Particle CreateParticle(GameTime time, float t, ParticleSystem particleSystem)
@@ -56,10 +57,6 @@ namespace SpaceRun
         }
     }
 
-    public class StaticParticleSystem : ParticleSource
-    {
-    }
-
     public class Particle
     {
         public Texture2D sprite = null;
@@ -81,6 +78,10 @@ namespace SpaceRun
         public Boolean dying;
         public float dyingAge = 0;
         public float dyingTime = 5;
+        public float size = 1;
+
+        private Quad quad = null;
+        private VertexDeclaration quadVertexDeclaration;
 
         public void Update(float t, ParticleSystem system)
         {
@@ -111,12 +112,61 @@ namespace SpaceRun
         }
 
         public Boolean IsDead() { return dead;  }
+
+        public void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix, ParticleSystem system, Entity camera)
+        {
+            // TODO: Fix.
+
+            Vector3 ps = new Vector3(pos.X, pos.Y, pos.Z);
+            if (relativePosition)
+            {
+                ps += system.position;
+            }
+
+            Matrix billboardMatrix = Matrix.CreateBillboard(pos, camera.position, camera.getUpVector(), camera.getForwardVector());
+
+            if (quad == null)
+            {
+            }
+            quad = new Quad(ps, Vector3.Backward, Vector3.Up, size, size);
+            quadVertexDeclaration = new VertexDeclaration(graphics.GraphicsDevice, VertexPositionNormalTexture.VertexElements);
+
+            foreach (VertexPositionNormalTexture v in quad.Vertices)
+            {
+                Vector3.Transform(v.Position, billboardMatrix);
+            }
+
+            graphics.GraphicsDevice.VertexDeclaration = quadVertexDeclaration;
+            graphics.GraphicsDevice.DrawUserIndexedPrimitives
+                <VertexPositionNormalTexture>(
+                PrimitiveType.TriangleList,
+                quad.Vertices, 0, 4,
+                quad.Indexes, 0, 2);
+        }
     }
 
 
 
     public class ParticleSystem : Entity
     {
+        public ParticleSystem()
+        {
+        }
+
+        public ParticleSystem(Entity trackedEntity, List<Texture2D> sprites, float spread, float size, int number, Boolean relativePosition, float lifetime)
+        {
+            this.trackedEntity = trackedEntity;
+            this.maxNumberOfParticles = number;
+
+            ParticleSource source = new ParticleSource();
+            source.sprites = sprites;
+            source.particleSpread = spread;
+            source.size = size;
+            source.relativePosition = relativePosition;
+            source.particleLifeTime = lifetime;
+            addParticleSource(source);
+        }
+
         public Entity trackedEntity = null;
 
         public int maxNumberOfParticles = 100;
@@ -168,19 +218,7 @@ namespace SpaceRun
 
             foreach (Particle p in particles)
             {
-                //spriteBatch.Draw();
-
-                Vector3 pos = p.pos;
-                if (p.relativePosition)
-                {
-                    pos += position;
-                }
-                Matrix.CreateBillboard(pos, camera.position, camera.getUpVector(), camera.getForwardVector());
-
-
-
-                //graphics.GraphicsDevice.draw();
-                // TODO: Render
+                p.Render(graphics, cameraViewMatrix, cameraProjectionMatrix, this, camera);
             }
 
             spriteBatch.End();
