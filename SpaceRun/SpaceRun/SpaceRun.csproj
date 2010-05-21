@@ -92,6 +92,7 @@
     <Compile Include="Level1.cs" />
     <Compile Include="ModelManager.cs" />
     <Compile Include="Network.cs" />
+    <Compile Include="ParticleSystem.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="PlayerShip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
