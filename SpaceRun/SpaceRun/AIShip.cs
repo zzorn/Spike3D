@@ -16,14 +16,14 @@ namespace SpaceRun
 {
     public class AIShip : Ship
     {
-        private const float WAKE_UP_RANGE = 20000.0f;
-        private const float AVOIDANCE_RANGE = 200.0f;
+        private const float WAKE_UP_RANGE = 200.0f;
+        private const float AVOIDANCE_RANGE = 5.0f;
 
         private Entity target;
 
         public AIShip()
         {
-            maxThrust = 100.0f;
+            maxThrust = 1.0f;
         }
 
         public override void LogicUpdate(GameTime time, float t)

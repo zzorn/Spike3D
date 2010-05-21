@@ -16,7 +16,10 @@ namespace SpaceRun
 {
     public abstract class Level
     {
+        private Random rand = new Random();
+
         public abstract void populateLevel();
+
 
         public void createWaypoint(Vector3 position)
         {
@@ -29,10 +32,37 @@ namespace SpaceRun
         public void createAsteroid(Vector3 position)
         {
             Entity entity = new Asteroid();
-            entity.radius_m = 1.5f;
+            entity.radius_m = 0.9f;
             entity.position = position;
-            entity.model = ModelManager.get().getModel(ModelType.ASTEROID);
+            entity.mass_kg = 100000;
+            entity.scale = (float)(rand.NextDouble() * 3 + 0.2f);
+            entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.3f;
+            entity.velocity = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.1f;
+            entity.heading = new Quaternion((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble());
+            entity.model = ModelManager.get().getModel(rand.NextDouble() < 0.5 ? ModelType.ASTEROID : ModelType.ASTEROID2);
             EntityManager.get().asteroids.Add(entity);
+        }
+
+        public void createEnemyFighter(Vector3 position)
+        {
+            Entity entity = new AIShip();
+            entity.radius_m = 1.0f;
+            entity.position = position;
+            entity.mass_kg = 10000;
+            entity.model = ModelManager.get().getModel(ModelType.ENEMY_FIGHTER);
+            EntityManager.get().aiShips.Add(entity);
+        }
+
+        public void createPlanet(Vector3 position)
+        {
+            Entity entity = new Planet();
+            entity.radius_m = 1000.0f;
+            entity.scale = 1000.0f;
+            entity.position = position;
+            entity.mass_kg = 1e20f;
+            entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.01f;
+            entity.model = ModelManager.get().getModel(ModelType.PLANET);
+            EntityManager.get().planets.Add(entity);
         }
     }
 }

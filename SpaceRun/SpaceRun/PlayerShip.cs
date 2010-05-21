@@ -16,6 +16,8 @@ namespace SpaceRun
 {
     public class PlayerShip : Ship
     {
+        public int entityID; //Index position in entity manager category
+        public byte ownerID; //Unique identifier to link up with the network gamer entity
         private int currentWaypointIndex;
 
         public override void LogicUpdate(GameTime time, float t)
@@ -31,11 +33,11 @@ namespace SpaceRun
                 torqueThrustVector_N = new Vector3(
                     ks.IsKeyDown(Keys.Left) ? 0.5f : (ks.IsKeyDown(Keys.Right) ? -0.5f : 0),
                     ks.IsKeyDown(Keys.Down) ? -0.5f : (ks.IsKeyDown(Keys.Up) ? 0.5f : 0),
-                    0);
+                    0) * 10000.0f;
             }
             if (thrustVector_N.LengthSquared() == 0 && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                thrustVector_N = new Vector3(0, 0, -10);
+                thrustVector_N = new Vector3(0, 0, -100000);
             }
 
             List<Entity> waypoints = EntityManager.get().waypoints;
@@ -47,13 +49,15 @@ namespace SpaceRun
                     currentWaypointIndex++;
                 }
             }
-
-            Stabilization(t);
+            if (thrustVector_N.LengthSquared() == 0)
+            {
+                Stabilization(t);
+            }
         }
 
         public void DrawDebug(SpriteBatch spriteBatch, SpriteFont font)
         {
-            Vector3 playerShipEulerAngles = QuaternionToEuler(heading);
+            Vector3 playerShipEulerAngles = Utilities.QuaternionToEuler(heading);
 
             spriteBatch.DrawString(
                     font,
@@ -64,51 +68,6 @@ namespace SpaceRun
                     "PlayerShip hull[" + Math.Round(hull) + "]\n",
                     new Vector2(10.0f, 10.0f),
                     Color.Yellow);
-        }
-
-        /// <summary> 
-        /// The function converts a Microsoft.Xna.Framework.Quaternion into a Microsoft.Xna.Framework.Vector3 
-        /// </summary> 
-        /// <param name="q">The Quaternion to convert</param> 
-        /// <returns>An equivalent Vector3</returns> 
-        /// <remarks> 
-        /// This function was extrapolated by reading the work of Martin John Baker. All credit for this function goes to Martin John. 
-        /// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/index.htm 
-        /// </remarks> 
-        private Vector3 QuaternionToEuler(Quaternion q) 
-        { 
-            Vector3 v = new Vector3(); 
- 
-            v.X = (float)Math.Atan2 
-            ( 
-                2 * q.Y * q.W - 2 * q.X * q.Z,  
-                1 - 2*Math.Pow(q.Y, 2) - 2*Math.Pow(q.Z, 2) 
-            ); 
- 
-            v.Y = (float)Math.Asin 
-            ( 
-                2*q.X*q.Y + 2*q.Z*q.W 
-            ); 
- 
-            v.Z = (float)Math.Atan2 
-            ( 
-                2*q.X*q.W-2*q.Y*q.Z, 
-                1 - 2*Math.Pow(q.X, 2) - 2*Math.Pow(q.Z, 2) 
-        ); 
- 
-            if(q.X*q.Y + q.Z*q.W == 0.5) 
-            { 
-                v.X = (float)(2 * Math.Atan2(q.X,q.W)); 
-                v.Z = 0;     
-            } 
- 
-            else if(q.X*q.Y + q.Z*q.W == -0.5) 
-            { 
-                v.X = (float)(-2 * Math.Atan2(q.X, q.W)); 
-                v.Z = 0; 
-            } 
- 
-            return v; 
         }
     }
 }

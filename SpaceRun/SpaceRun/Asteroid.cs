@@ -20,11 +20,11 @@ namespace SpaceRun
         {
             foreach (Entity player in EntityManager.get().playerShips)
             {
-                if (Vector3.Distance(position, player.position + player.velocity * t) < radius_m)
+                if (Vector3.Distance(position, player.position + player.velocity * t) < radius_m * scale)
                 {
                     Ship playerShip = ((Ship)player);
 
-                    playerShip.takeDamage(playerShip.velocity.Length() * 10);
+                    playerShip.takeDamage(playerShip.velocity.Length() * 2);
                     playerShip.velocity = -player.velocity * 0.5f;
                     playerShip.acceleration = Vector3.Zero;
                 }
