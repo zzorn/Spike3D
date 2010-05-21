@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="AIShip.cs" />
     <Compile Include="Asteroid.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityManager.cs" />

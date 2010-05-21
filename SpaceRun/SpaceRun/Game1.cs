@@ -23,6 +23,8 @@ namespace SpaceRun
 
         public SpriteFont debugFont;
 
+        private HUD hud = new HUD();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -61,6 +63,9 @@ namespace SpaceRun
             ship.mass_kg = 10000;
             EntityManager.get().playerShips.Add(ship);
 
+            hud.playerShip = ship;
+            hud.LoadContent(Content);
+
             // Space dust
             /* // TODO: Use some ready made particle engine.
             List<Texture2D> spaceDust = new List<Texture2D>();
@@ -94,6 +99,7 @@ namespace SpaceRun
                 this.Exit();
 
             EntityManager.get().updateEntities(gameTime);
+            hud.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -118,8 +124,9 @@ namespace SpaceRun
             {
                 ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
             }
-            
             spriteBatch.End();
+
+            hud.Render(graphics);
 
             base.Draw(gameTime);
         }
