@@ -18,9 +18,9 @@ namespace SpaceRun
     {
         private int currentWaypointIndex;
 
-        public override void LogicUpdate(GameTime time)
+        public override void LogicUpdate(GameTime time, float t)
         {
-            base.LogicUpdate(time);
+            base.LogicUpdate(time, t);
 
             thrustVector_N = new Vector3(0, 0, GamePad.GetState(PlayerIndex.One).Triggers.Right);
             torqueThrustVector_N = new Vector3(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left, 0);
@@ -29,13 +29,13 @@ namespace SpaceRun
             {
                 KeyboardState ks = Keyboard.GetState();
                 torqueThrustVector_N = new Vector3(
-                    ks.IsKeyDown(Keys.Left) ? -0.1f : (ks.IsKeyDown(Keys.Right) ? 0.1f : 0),
+                    ks.IsKeyDown(Keys.Left) ? 0.1f : (ks.IsKeyDown(Keys.Right) ? -0.1f : 0),
                     ks.IsKeyDown(Keys.Down) ? -0.1f : (ks.IsKeyDown(Keys.Up) ? 0.1f : 0),
                     0);
             }
             if (thrustVector_N.LengthSquared() == 0 && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                thrustVector_N = new Vector3(0, 0, 100);
+                thrustVector_N = new Vector3(0, 0, -1000);
             }
 
             List<Entity> waypoints = EntityManager.get().waypoints;
@@ -47,6 +47,9 @@ namespace SpaceRun
                     currentWaypointIndex++;
                 }
             }
+
+           RotationStabilization( t);
+
         }
 
     }
