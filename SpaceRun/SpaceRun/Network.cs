@@ -318,7 +318,7 @@ namespace SpaceRun
                     "Players: " + session.AllGamers.Count + "/" + session.MaxGamers + "\n" +
                     "You are: " + (session.IsHost ? "Host" : "Client") + "\n" +
                     (networkErrorMessage != "" ? networkErrorMessage : ""),
-                    new Vector2(200.0f, 10.0f),
+                    new Vector2(300.0f, 10.0f),
                     Color.Yellow);
         }
     }
