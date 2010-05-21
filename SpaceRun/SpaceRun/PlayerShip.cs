@@ -25,8 +25,7 @@ namespace SpaceRun
             base.LogicUpdate(time, t);
 
             thrustVector_N = -new Vector3(0, 0, GamePad.GetState(PlayerIndex.One).Triggers.Right) * 100000.0f;
-            torqueThrustVector_N = new Vector3(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left, GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X) * 10000.0f;
-            torqueThrustVector_N = new Vector3(-torqueThrustVector_N.X, torqueThrustVector_N.Y, -torqueThrustVector_N.Z / 10);
+            torqueThrustVector_N = -new Vector3(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left, GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X / 10.0f) * 10000.0f;
             
 
             if (torqueThrustVector_N.LengthSquared() == 0)
