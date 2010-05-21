@@ -25,5 +25,14 @@ namespace SpaceRun
             waypoint.position = position;
             EntityManager.get().waypoints.Add(waypoint);
         }
+
+        public void createAsteroid(Vector3 position)
+        {
+            Asteroid entity = new Asteroid();
+            entity.radius_m = 1000.0f;
+            entity.position = position;
+            entity.model = ModelManager.get().getModel(ModelType.ASTEROID);
+            EntityManager.get().asteroids.Add(entity);
+        }
     }
 }

@@ -90,6 +90,7 @@
     <Compile Include="EntityManager.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Level1.cs" />
+    <Compile Include="ModelManager.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="PlayerShip.cs" />

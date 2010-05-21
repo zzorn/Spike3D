@@ -36,9 +36,6 @@ namespace SpaceRun
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: A list of levels or something.
-            new Level1().populateLevel();
-
             base.Initialize();
         }
 
@@ -51,20 +48,14 @@ namespace SpaceRun
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            ModelManager.get().loadModels(Content);
+
+            // TODO: A list of levels or something.
+            new Level1().populateLevel();
+
             PlayerShip ship = new PlayerShip();
-            ship.model = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
+            ship.model = ModelManager.get().getModel(ModelType.PLAYER_SHIP);
             EntityManager.get().playerShips.Add(ship);
-
-            Random rand = new Random();
-            for (int i = 0; i < 100; i++)
-            {
-                AIShip ship2 = new AIShip();
-                ship2.model = ship.model;
-                ship2.position = new Vector3(rand.Next(5000) - 2500, rand.Next(5000) - 2500, rand.Next(5000) - 2500);
-                EntityManager.get().aiShips.Add(ship2);
-            }
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
