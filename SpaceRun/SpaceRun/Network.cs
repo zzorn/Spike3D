@@ -53,6 +53,49 @@ namespace SpaceRun
             }
         }
 
+        public void HostGame()
+        {
+            if (Gamer.SignedInGamers.Count == 0 && Guide.IsVisible == false)
+            {
+                // If there are no profiles signed in, we cannot proceed.
+                // Show the Guide so the user can sign in.
+                Guide.ShowSignIn(maxLocalPlayers, false);
+            }
+            else
+            {
+                if (session == null)
+                {
+                    CreateSession();
+                }
+                else
+                {
+                    //FIXME: What to do when already in a session?
+                }
+            }
+        }
+
+        public void JoinGame()
+        {
+            
+            if (Gamer.SignedInGamers.Count == 0 && Guide.IsVisible == false)
+            {
+                // If there are no profiles signed in, we cannot proceed.
+                // Show the Guide so the user can sign in.
+                Guide.ShowSignIn(maxLocalPlayers, false);
+            }
+            else
+            {
+                if (session == null)
+                {
+                    JoinSession();
+                }
+                else
+                {
+                    //FIXME: What to do when already in a session?
+                }
+            }
+        }
+
         //Server sending player ship data to all other clients
         private void BroadCastPlayerShipData(LocalNetworkGamer server)
         {
