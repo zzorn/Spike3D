@@ -18,9 +18,9 @@ namespace SpaceRun
     {
         private int currentWaypointIndex;
 
-        public override void LogicUpdate(GameTime time)
+        public override void LogicUpdate(GameTime time, float t)
         {
-            base.LogicUpdate(time);
+            base.LogicUpdate(time, t);
 
             thrustVector_N = new Vector3(0, 0, GamePad.GetState(PlayerIndex.One).Triggers.Right);
             torqueThrustVector_N = new Vector3(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left, 0);
@@ -47,6 +47,9 @@ namespace SpaceRun
                     currentWaypointIndex++;
                 }
             }
+
+           RotationStabilization( t);
+
         }
 
     }

@@ -16,25 +16,49 @@ namespace SpaceRun
 {
     public class Ship : Entity
     {
+        public Ship()
+        {
+            maxEnergy = 100;
+            maxShield = 100;
+            maxHull = 100;
+            maxThrust = 10;
+            maxTorqueThrust = 10;
+
+            energy = maxEnergy;
+            shield = maxShield;
+            hull = maxHull;
+        }
+
+        public float energy { get; protected set; }
         public float hull { get; protected set; }
         public float shield { get; protected set; }
 
-        protected float maxVelocity { get; set; }
-        protected float maxThrust { get; set; }
+        public float maxEnergy { get; protected set; }
+        public float maxHull { get; protected set; }
+        public float maxShield { get; protected set; }
 
-        public Ship()
+        protected float maxThrust { get; set; }
+        protected float maxTorqueThrust { get; set; }
+
+
+        public override void LogicUpdate(GameTime time, float t)
         {
-            hull = 1.0f;
-            shield = 1.0f;
+            shield +=  t / 10.0f;
+            if (shield > maxShield)
+            {
+                shield = maxShield;
+            }
         }
 
-        public override void LogicUpdate(GameTime time)
+        protected void RotationStabilization(float time)
         {
-            shield += (float)time.ElapsedGameTime.TotalSeconds / 10.0f;
-            if (shield > 1)
-            {
-                shield = 1;
-            }
+            /*
+            Vector3 anti = new Vector3(rotation.X, rotation.Y, rotation.Z);
+            anti.Normalize();
+            torqueThrustVector_N -= anti * maxTorqueThrust * time;
+            */
+
+            rotation *= 0.99f ;
         }
 
         public void takeDamage(float damageAmount)

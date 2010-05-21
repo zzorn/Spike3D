@@ -25,9 +25,9 @@ namespace SpaceRun
             maxThrust = 100.0f;
         }
 
-        public override void LogicUpdate(GameTime time)
+        public override void LogicUpdate(GameTime time, float t)
         {
-            base.LogicUpdate(time);
+            base.LogicUpdate(time, t);
 
             if (target == null)
             {

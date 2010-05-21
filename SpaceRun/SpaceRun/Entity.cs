@@ -56,14 +56,16 @@ namespace SpaceRun
          */ 
         public void Update(GameTime time)
         {
+            float t = (float)time.ElapsedGameTime.TotalSeconds;
+
             // Logic
-            LogicUpdate(time);
+            LogicUpdate(time, t);
 
             // Physics
-            UpdatePhysics((float)time.ElapsedGameTime.TotalSeconds);
+            UpdatePhysics(t);
 
             // Movement
-            UpdateMovement((float)time.ElapsedGameTime.TotalSeconds);
+            UpdateMovement(t);
         }
 
         /**
@@ -96,7 +98,7 @@ namespace SpaceRun
          * Does logic update for the entity (AI or player control, state changes, etc).
          * Can also update the own acceleration and torque of the entity.
          */
-        public abstract void LogicUpdate(GameTime time);
+        public abstract void LogicUpdate(GameTime time, float t);
 
         /**
          * Update movement based on physical forces.
@@ -129,7 +131,8 @@ namespace SpaceRun
             rotation += torque * time;
 
             Vector3 r = rotation * time; 
-            heading += Quaternion.CreateFromYawPitchRoll(r.X, r.Y, r.Z);
+            heading *= Quaternion.CreateFromYawPitchRoll(r.X, r.Y, r.Z);
+            heading.Normalize();
         }
 
         /**

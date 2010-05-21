@@ -16,7 +16,7 @@ namespace SpaceRun
 {
     public class Waypoint : Entity
     {
-        public override void LogicUpdate(GameTime time)
+        public override void LogicUpdate(GameTime time, float t)
         {
         }
     }

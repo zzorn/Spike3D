@@ -22,7 +22,7 @@ namespace SpaceRun
         {
         }
         
-        public override void LogicUpdate(GameTime time)
+        public override void LogicUpdate(GameTime time, float t)
         {
             // Planets dont do much :)
         }
