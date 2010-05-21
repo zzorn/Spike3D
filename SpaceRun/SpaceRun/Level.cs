@@ -32,7 +32,7 @@ namespace SpaceRun
         public void createAsteroid(Vector3 position)
         {
             Entity entity = new Asteroid();
-            entity.radius_m = 1.1f;
+            entity.radius_m = 0.7f;
             entity.position = position;
             entity.mass_kg = 100000;
             entity.scale = (float)(rand.NextDouble() * 8 + 0.2f);
