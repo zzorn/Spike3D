@@ -23,6 +23,8 @@ namespace SpaceRun
 
         public SpriteFont debugFont;
 
+        public Network network;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -37,6 +39,10 @@ namespace SpaceRun
         /// </summary>
         protected override void Initialize()
         {
+            Components.Add(new GamerServicesComponent(this));
+
+            network = new Network();
+
             base.Initialize();
         }
 
@@ -81,6 +87,11 @@ namespace SpaceRun
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+                network.HostGame();
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+                network.JoinGame();
 
             EntityManager.get().updateEntities(gameTime);
 
