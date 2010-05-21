@@ -19,8 +19,9 @@ namespace SpaceRun
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
 
+        public SpriteFont debugFont;
 
         public Game1()
         {
@@ -50,6 +51,8 @@ namespace SpaceRun
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            debugFont = Content.Load<SpriteFont>("media\\fonts\\DebugFont");
 
             PlayerShip ship = new PlayerShip();
             ship.model = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
@@ -104,6 +107,13 @@ namespace SpaceRun
             GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
 
             EntityManager.get().renderEntities(graphics);
+
+            spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
+
+            //HACK: player debug
+            ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
+            
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
