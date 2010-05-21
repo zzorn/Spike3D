@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    class Network
+    public class Network
     {
         private enum EntityEventType { State, Remove }
         private enum GamePacketType { PlayerShip, Ship, Asteroid }
