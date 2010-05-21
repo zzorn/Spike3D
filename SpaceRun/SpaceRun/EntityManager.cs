@@ -65,8 +65,8 @@ namespace SpaceRun
             if (cameraEntity == null) cameraEntity = playerShips[0]; // HACK
 
             // View from the perspective of the camera entity
-            //Matrix cameraViewMatrix = Matrix.CreateFromQuaternion(cameraEntity.heading) * Matrix.CreateTranslation(cameraEntity.position);
-            Matrix cameraViewMatrix = Matrix.CreateLookAt(new Vector3(200, 200, -200) + cameraEntity.position, cameraEntity.position, Vector3.Up);
+            Matrix cameraViewMatrix = Matrix.CreateFromQuaternion(cameraEntity.heading) * Matrix.CreateTranslation(cameraEntity.position);
+            //Matrix cameraViewMatrix = Matrix.CreateLookAt(new Vector3(200, 200, -200) + cameraEntity.position, cameraEntity.position, Vector3.Up);
             Matrix cameraProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphics.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000000f);
             
             foreach (List<Entity> entityList in getEntityLists())

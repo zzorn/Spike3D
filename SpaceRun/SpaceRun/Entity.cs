@@ -71,7 +71,7 @@ namespace SpaceRun
          */
         public virtual void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
         {
-            float scale = 1;
+            float scale = 100;
 
             // Render model mesh
             if (model != null)
