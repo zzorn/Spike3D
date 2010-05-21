@@ -21,15 +21,15 @@ namespace SpaceRun
         public void createWaypoint(Vector3 position)
         {
             Waypoint waypoint = new Waypoint();
-            waypoint.radius_m = 10.0f;
+            waypoint.radius_m = 1.0f;
             waypoint.position = position;
             EntityManager.get().waypoints.Add(waypoint);
         }
 
         public void createAsteroid(Vector3 position)
         {
-            Asteroid entity = new Asteroid();
-            entity.radius_m = 1000.0f;
+            Entity entity = new Asteroid();
+            entity.radius_m = 1.5f;
             entity.position = position;
             entity.model = ModelManager.get().getModel(ModelType.ASTEROID);
             EntityManager.get().asteroids.Add(entity);

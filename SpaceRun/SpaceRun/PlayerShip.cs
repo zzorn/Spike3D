@@ -29,13 +29,13 @@ namespace SpaceRun
             {
                 KeyboardState ks = Keyboard.GetState();
                 torqueThrustVector_N = new Vector3(
-                    ks.IsKeyDown(Keys.Left) ? 0.1f : (ks.IsKeyDown(Keys.Right) ? -0.1f : 0),
-                    ks.IsKeyDown(Keys.Down) ? -0.1f : (ks.IsKeyDown(Keys.Up) ? 0.1f : 0),
+                    ks.IsKeyDown(Keys.Left) ? 0.5f : (ks.IsKeyDown(Keys.Right) ? -0.5f : 0),
+                    ks.IsKeyDown(Keys.Down) ? -0.5f : (ks.IsKeyDown(Keys.Up) ? 0.5f : 0),
                     0);
             }
             if (thrustVector_N.LengthSquared() == 0 && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                thrustVector_N = new Vector3(0, 0, -1000);
+                thrustVector_N = new Vector3(0, 0, -10);
             }
 
             List<Entity> waypoints = EntityManager.get().waypoints;
@@ -48,7 +48,7 @@ namespace SpaceRun
                 }
             }
 
-            RotationStabilization(t);
+            Stabilization(t);
         }
 
         public void DrawDebug(SpriteBatch spriteBatch, SpriteFont font)
