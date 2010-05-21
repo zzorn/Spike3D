@@ -51,6 +51,16 @@ namespace SpaceRun
 
         public Model model {get; set; }
 
+        public Vector3 getUpVector()
+        {
+            return Vector3.Transform(Vector3.Up, Matrix.CreateFromQuaternion(heading));
+        }
+
+        public Vector3 getForwardVector()
+        {
+            return Vector3.Transform(Vector3.Forward, Matrix.CreateFromQuaternion(heading));
+        }
+
         /**
          * Updates AI, player input, game logic, physics, movement, etc.
          */ 
@@ -84,7 +94,7 @@ namespace SpaceRun
                     {
                         effect.EnableDefaultLighting();
                         effect.PreferPerPixelLighting = true;
-                        effect.World = Matrix.CreateFromQuaternion(Quaternion.Identity) * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
+                        effect.World = Matrix.CreateFromQuaternion(heading) * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
                         effect.Projection = cameraProjectionMatrix;
                         effect.View = cameraViewMatrix;
                     }

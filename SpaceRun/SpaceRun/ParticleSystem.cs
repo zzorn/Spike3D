@@ -161,6 +161,8 @@ namespace SpaceRun
 
         public override void Render(GraphicsDeviceManager graphics, Matrix cameraViewMatrix, Matrix cameraProjectionMatrix)
         {
+            Entity camera = EntityManager.get().cameraEntity;
+
             SpriteBatch spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
             spriteBatch.Begin();
 
@@ -173,6 +175,9 @@ namespace SpaceRun
                 {
                     pos += position;
                 }
+                Matrix.CreateBillboard(pos, camera.position, camera.getUpVector(), camera.getForwardVector());
+
+
 
                 //graphics.GraphicsDevice.draw();
                 // TODO: Render
