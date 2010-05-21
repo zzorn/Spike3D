@@ -24,6 +24,7 @@ namespace SpaceRun
         public SpriteFont debugFont;
 
         private HUD hud = new HUD();
+        public Network network;
 
         public Game1()
         {
@@ -39,6 +40,10 @@ namespace SpaceRun
         /// </summary>
         protected override void Initialize()
         {
+            Components.Add(new GamerServicesComponent(this));
+
+            network = new Network();
+
             base.Initialize();
         }
 
@@ -98,6 +103,11 @@ namespace SpaceRun
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+                network.HostGame();
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+                network.JoinGame();
+
             EntityManager.get().updateEntities(gameTime);
             hud.Update(gameTime);
 
@@ -124,6 +134,16 @@ namespace SpaceRun
             {
                 ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
             }
+<<<<<<< HEAD
+=======
+
+            //HACK: network debug
+            if (network.session != null)
+            {
+                network.DrawDebug(spriteBatch, debugFont);
+            }
+            
+>>>>>>> 05d13088316a6d5fa674a68441f32f3b50af2e18
             spriteBatch.End();
 
             hud.Render(graphics);

@@ -18,15 +18,21 @@ namespace SpaceRun
     {
         public override void LogicUpdate(GameTime time, float t)
         {
-            foreach (Entity player in EntityManager.get().playerShips)
-            {
-                if (Vector3.Distance(position, player.position + player.velocity * t) < radius_m * scale)
-                {
-                    Ship playerShip = ((Ship)player);
+            checkCollisions(t, EntityManager.get().playerShips);
+            checkCollisions(t, EntityManager.get().aiShips);
+        }
 
-                    playerShip.takeDamage(playerShip.velocity.Length() * 2);
-                    playerShip.velocity = -player.velocity * 0.5f;
-                    playerShip.acceleration = Vector3.Zero;
+        private void checkCollisions(float t, List<Entity> entities)
+        {
+            foreach (Entity entity in entities)
+            {
+                if (Vector3.Distance(position, entity.position + entity.velocity * t) < radius_m * scale + entity.radius_m * entity.scale)
+                {
+                    Ship ship = ((Ship)entity);
+
+                    ship.takeDamage(ship.velocity.Length() * 2);
+                    ship.velocity = -entity.velocity * 0.5f;
+                    ship.acceleration = Vector3.Zero;
                 }
             }
         }

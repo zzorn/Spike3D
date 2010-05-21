@@ -26,11 +26,11 @@ namespace SpaceRun
             Random rand = new Random();
             for (int i = 0; i < 400; i++)
             {
-                createAsteroid(new Vector3(rand.Next(50) - 25, rand.Next(50) - 25, rand.Next(500) - 500));
+                createAsteroid(new Vector3(rand.Next(100) - 50, rand.Next(100) - 50, rand.Next(500) - 500));
             }
             for (int i = 0; i < 20; i++)
             {
-                createEnemyFighter(new Vector3(rand.Next(50) - 25, rand.Next(50) - 25, rand.Next(500) - 500));
+                //createEnemyFighter(new Vector3(rand.Next(50) - 25, rand.Next(50) - 25, rand.Next(500) - 500));
             }
             createPlanet(new Vector3(0, 0, -1000));
 

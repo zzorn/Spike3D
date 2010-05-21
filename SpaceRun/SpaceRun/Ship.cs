@@ -37,7 +37,7 @@ namespace SpaceRun
         public float maxEnergy { get; protected set; }
         public float maxHull { get; protected set; }
         public float maxShield { get; protected set; }
-        public float shieldRechargeRate { get; protected set; }
+        public float shieldRechargeRate { get; set; }
 
         protected float maxThrust { get; set; }
         protected float maxTorqueThrust { get; set; }

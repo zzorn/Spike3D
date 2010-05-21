@@ -14,12 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace SpaceRun
 {
-    class Network
+    public class Network
     {
         private enum EntityEventType { State, Remove }
         private enum GamePacketType { PlayerShip, Ship, Asteroid }
 
-        NetworkSession session;
+        public NetworkSession session;
         PacketWriter packetWriter = new PacketWriter();
         PacketReader packetReader = new PacketReader();
 
@@ -291,11 +291,13 @@ namespace SpaceRun
         /// </summary>
         protected void GamerJoinedEventHandler(object sender, GamerJoinedEventArgs e)
         {
+            networkErrorMessage = "No logic for GamerJoinedEvent";
             //Do something with the new player
         }
 
         protected void GamerLeftEventHandler(object sender, GamerLeftEventArgs e)
         {
+            networkErrorMessage = "No logic for GamerLeftEvent";
             //Remove the player and the associated ship from game
         }
 
@@ -306,6 +308,18 @@ namespace SpaceRun
         {
             networkErrorMessage = e.EndReason.ToString();
             session.Dispose();
+        }
+
+        public void DrawDebug(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            spriteBatch.DrawString(
+                    font,
+                    "Network session active\n" +
+                    "Players: " + session.AllGamers.Count + "/" + session.MaxGamers + "\n" +
+                    "You are: " + (session.IsHost ? "Host" : "Client") + "\n" +
+                    (networkErrorMessage != "" ? networkErrorMessage : ""),
+                    new Vector2(200.0f, 10.0f),
+                    Color.Yellow);
         }
     }
 }

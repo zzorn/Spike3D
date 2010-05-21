@@ -32,10 +32,10 @@ namespace SpaceRun
         public void createAsteroid(Vector3 position)
         {
             Entity entity = new Asteroid();
-            entity.radius_m = 0.9f;
+            entity.radius_m = 0.7f;
             entity.position = position;
             entity.mass_kg = 100000;
-            entity.scale = (float)(rand.NextDouble() * 3 + 0.2f);
+            entity.scale = (float)(rand.NextDouble() * 8 + 0.2f);
             entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.3f;
             entity.velocity = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.1f;
             entity.heading = new Quaternion((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble());
@@ -45,10 +45,12 @@ namespace SpaceRun
 
         public void createEnemyFighter(Vector3 position)
         {
-            Entity entity = new AIShip();
+            Ship entity = new AIShip();
             entity.radius_m = 1.0f;
+            entity.scale = 5.0f;
             entity.position = position;
             entity.mass_kg = 10000;
+            entity.shieldRechargeRate = 1.0f;
             entity.model = ModelManager.get().getModel(ModelType.ENEMY_FIGHTER);
             EntityManager.get().aiShips.Add(entity);
         }

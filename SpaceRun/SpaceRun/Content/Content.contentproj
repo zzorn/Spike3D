@@ -289,6 +289,20 @@
     </Compile>
     <Compile Include="media\textures\video-tessa-talk-3.png">
       <Name>video-tessa-talk-3</Name>
+    <Compile Include="media\models\beta_ship\beta_ship.fbx">
+      <Name>beta_ship</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="media\models\beta_ship\textures\ship_color.png">
+      <Name>ship_color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="media\models\beta_ship\textures\ship_luminous.png">
+      <Name>ship_luminous</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
