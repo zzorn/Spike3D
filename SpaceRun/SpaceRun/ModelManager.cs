@@ -18,6 +18,7 @@ namespace SpaceRun
     public enum ModelType
     {
         ASTEROID,
+        ASTEROID2,
         PLAYER_SHIP,
         ENEMY_FIGHTER,
         PLANET,
@@ -45,7 +46,8 @@ namespace SpaceRun
 
         public void loadModels(ContentManager Content)
         {
-            models[ModelType.ASTEROID] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
+            models[ModelType.ASTEROID] = Content.Load<Model>("media\\models\\asteroids\\asteroid1");
+            models[ModelType.ASTEROID2] = Content.Load<Model>("media\\models\\asteroids\\asteroid2");
             models[ModelType.PLAYER_SHIP] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
             models[ModelType.ENEMY_FIGHTER] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
             models[ModelType.PLANET] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
