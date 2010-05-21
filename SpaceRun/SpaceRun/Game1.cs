@@ -92,7 +92,7 @@ namespace SpaceRun
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Magenta);
+            GraphicsDevice.Clear(new Color(0, 0.05f, 0.1f));
 
             GraphicsDevice.RenderState.DepthBufferEnable = true;
             GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
@@ -102,7 +102,10 @@ namespace SpaceRun
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
 
             //HACK: player debug
-            ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
+            if (EntityManager.get().playerShips.Count > 0)
+            {
+                ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
+            }
             
             spriteBatch.End();
 

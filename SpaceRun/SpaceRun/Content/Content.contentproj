@@ -55,11 +55,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="media\models\alpha_ship\textures\ship_color.png">
-      <Name>ship_color</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="media\models\alpha_ship\textures\ship_luminous.png">
       <Name>ship_luminous</Name>
       <Importer>TextureImporter</Importer>
@@ -176,6 +171,11 @@
       <Name>DebugFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="media\models\alpha_ship\textures\ship_color.png">
+      <Name>ship_color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

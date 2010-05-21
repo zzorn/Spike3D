@@ -59,7 +59,9 @@ namespace SpaceRun
                     font,
                     "PlayerShip position[" + Math.Round(position.X) + "," + Math.Round(position.Y) + "," + Math.Round(position.Z) + "]\n" +
                     "PlayerShip headAngs[" + Math.Round(MathHelper.ToDegrees(playerShipEulerAngles.X)) + "," + Math.Round(MathHelper.ToDegrees(playerShipEulerAngles.Y)) + "," + Math.Round(MathHelper.ToDegrees(playerShipEulerAngles.Z)) + "]\n" +
-                    "PlayerShip velocity[" + Math.Round(velocity.X) + "," + Math.Round(velocity.Y) + "," + Math.Round(velocity.Z) + "]",
+                    "PlayerShip velocity[" + Math.Round(velocity.X) + "," + Math.Round(velocity.Y) + "," + Math.Round(velocity.Z) + "]\n" + 
+                    "PlayerShip shield[" + Math.Round(shield) + "]\n" +
+                    "PlayerShip hull[" + Math.Round(hull) + "]\n",
                     new Vector2(10.0f, 10.0f),
                     Color.Yellow);
         }
