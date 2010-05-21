@@ -19,7 +19,7 @@ namespace SpaceRun
         private enum EntityEventType { State, Remove }
         private enum GamePacketType { PlayerShip, Ship, Asteroid }
 
-        NetworkSession session;
+        public NetworkSession session;
         PacketWriter packetWriter = new PacketWriter();
         PacketReader packetReader = new PacketReader();
 
@@ -306,6 +306,17 @@ namespace SpaceRun
         {
             networkErrorMessage = e.EndReason.ToString();
             session.Dispose();
+        }
+
+        public void DrawDebug(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            spriteBatch.DrawString(
+                    font,
+                    "Network session active\n" +
+                    "Players: " + session.AllGamers.Count + "/" + session.MaxGamers + "\n" +
+                    "You are: " + (session.IsHost ? "Host" : "Client") + "\n",
+                    new Vector2(200.0f, 10.0f),
+                    Color.Yellow);
         }
     }
 }

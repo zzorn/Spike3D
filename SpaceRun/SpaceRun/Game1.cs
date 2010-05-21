@@ -129,6 +129,12 @@ namespace SpaceRun
             {
                 ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
             }
+
+            //HACK: network debug
+            if (network.session != null)
+            {
+                network.DrawDebug(spriteBatch, debugFont);
+            }
             
             spriteBatch.End();
 
