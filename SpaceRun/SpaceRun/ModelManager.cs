@@ -50,7 +50,7 @@ namespace SpaceRun
             models[ModelType.ASTEROID2] = Content.Load<Model>("media\\models\\asteroids\\asteroid2");
             models[ModelType.PLAYER_SHIP] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
             models[ModelType.ENEMY_FIGHTER] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
-            models[ModelType.PLANET] = Content.Load<Model>("media\\models\\alpha_ship\\alpha_ship");
+            models[ModelType.PLANET] = Content.Load<Model>("media\\models\\planet\\planet");
         }
         
         private ModelManager()

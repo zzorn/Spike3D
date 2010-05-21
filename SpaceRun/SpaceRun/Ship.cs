@@ -65,7 +65,7 @@ namespace SpaceRun
             if (stabilizerCounter >= 0.1f)
             {
                 rotation *= 0.95f;
-                velocity *= 0.95f;
+                velocity *= 0.98f;
                 stabilizerCounter -= 0.1f;
             }
         }
