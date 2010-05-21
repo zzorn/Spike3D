@@ -16,7 +16,10 @@ namespace SpaceRun
 {
     public abstract class Level
     {
+        private Random rand = new Random();
+
         public abstract void populateLevel();
+
 
         public void createWaypoint(Vector3 position)
         {
@@ -29,9 +32,11 @@ namespace SpaceRun
         public void createAsteroid(Vector3 position)
         {
             Entity entity = new Asteroid();
-            entity.radius_m = 1.5f;
+            entity.radius_m = 0.6f;
             entity.position = position;
-            entity.model = ModelManager.get().getModel(ModelType.ASTEROID);
+            entity.rotation = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) * 0.3f;
+            entity.velocity = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble());
+            entity.model = ModelManager.get().getModel(rand.NextDouble() < 0.5 ? ModelType.ASTEROID : ModelType.ASTEROID2);
             EntityManager.get().asteroids.Add(entity);
         }
     }
