@@ -30,6 +30,8 @@ namespace SpaceRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
         }
 
         /// <summary>
@@ -134,8 +136,6 @@ namespace SpaceRun
             {
                 ((PlayerShip)EntityManager.get().playerShips[0]).DrawDebug(spriteBatch, debugFont);
             }
-<<<<<<< HEAD
-=======
 
             //HACK: network debug
             if (network.session != null)
@@ -143,7 +143,6 @@ namespace SpaceRun
                 network.DrawDebug(spriteBatch, debugFont);
             }
             
->>>>>>> 05d13088316a6d5fa674a68441f32f3b50af2e18
             spriteBatch.End();
 
             hud.Render(graphics);
